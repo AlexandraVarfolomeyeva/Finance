@@ -1,0 +1,113 @@
+﻿<Window x:Class="Finance.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Finance"
+        mc:Ignorable="d"
+        Title="Home Finance - Income" Height="450" Width="800" VerticalAlignment="Top" WindowState="Maximized" ResizeMode="NoResize" WindowStartupLocation="Manual">
+
+
+    <Window.Resources>
+        <Style x:Key="LeftMenuStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="Sitka Banner"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#FF88087B"/>
+            <Setter Property="Background" Value="#FFF8FDFD"/>
+            <Setter Property="BorderBrush" Value="#FFF8FDFD"/>
+        </Style>
+
+        <Style x:Key="UpperMenuStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="Sitka Banner"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderBrush" Value="#FF88087B"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#FFF8FDFD"/>
+            <Setter Property="Foreground" Value="#FF88087B"/>
+        </Style>
+        
+        <Style x:Key="SelectedItem" TargetType="Button">
+            <Setter Property="FontFamily" Value="Sitka Banner"/>
+            <Setter Property="FontSize" Value="21"/>
+            <Setter Property="Background" Value="#FFF8FDFD"/>
+            <Setter Property="Foreground" Value="BlueViolet"/>
+            <Setter Property="BorderBrush" Value="#FFF8FDFD"/>
+        </Style>
+    </Window.Resources>
+
+
+
+
+
+
+
+
+
+    <Grid x:Name="general"  Background="#FFEFEFEF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <!--<ColumnDefinition Width="158*"></ColumnDefinition>-->
+            <ColumnDefinition Width="100*"></ColumnDefinition>
+            <ColumnDefinition Width="600*"/>
+        </Grid.ColumnDefinitions>
+        <Canvas Grid.Row="0" Grid.ColumnSpan="2" Background="#FFEFEFEF" Margin="0,0,-0.4,16.8" Grid.RowSpan="1"/>
+        <Canvas Grid.RowSpan="2" Grid.Column="0" Background="#FFF8FDFD" Margin="0,0,0.6,0"/>
+        <!--<Menu  x:Name="menu" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="21" Width="307" >
+            <MenuItem Header="Файл"/>
+            <MenuItem Header="Правка"/>
+            <MenuItem Header="Окно"/>
+            <MenuItem Header="Справка"/>
+            <MenuItem Header="О программе"/>
+        </Menu>-->
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource UpperMenuStyle}" Grid.Column="0" Content="Добавить"/>
+            <Button Style="{StaticResource UpperMenuStyle}" Grid.Column="1" Content="Изменить"/>
+            <Button Style="{StaticResource UpperMenuStyle}" Grid.Column="2" Content="Удалить"/>
+            <Button Style="{StaticResource UpperMenuStyle}" Grid.Column="3" Content="Сохранить"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Grid.Column="0" Name="options" HorizontalAlignment="Center"  VerticalAlignment="Top" Background="#FFF8FDFD">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" ></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+               <!--Style="{StaticResource SelectedItem}">-->
+                <Button Style ="{StaticResource SelectedItem}" Command="{Binding ShowIncomes}" Content="Доходы" Grid.Row="0"/>
+                <Button Style ="{StaticResource LeftMenuStyle}" Content="Расходы" Grid.Row="1"/>
+                <Button Style ="{StaticResource LeftMenuStyle}" Content="План" Grid.Row="2"/>
+                <Button Style ="{StaticResource LeftMenuStyle}" Content="Бюджет" Grid.Row="3"/>
+                <Button Style ="{StaticResource LeftMenuStyle}" Content="О программе" Grid.Row="4"/>
+                <Button Style ="{StaticResource LeftMenuStyle}" Content="Справка" Grid.Row="5"/>
+            </Grid>
+            <Image Source="f.jpg" Grid.Row="0" Stretch="None" />
+           
+        </Grid>
+        <StackPanel x:Name="Table" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Grid.Row="1" >
+            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left"  Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" SelectionChanged="dataGrid_SelectionChanged" Grid.Column="1"  >
+                <DataGrid.Columns>
+                    <DataGridComboBoxColumn Header="Источник" Width="1*"/>
+                    <DataGridTextColumn Header="Сумма" Width="1*"/>
+                    <DataGridTextColumn Header="Дата" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
