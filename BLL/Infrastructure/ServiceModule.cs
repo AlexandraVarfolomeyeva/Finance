@@ -1,5 +1,5 @@
 ﻿using DAL.Interfaces;
-using Finance.Repository;
+using DAL.Repository;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;

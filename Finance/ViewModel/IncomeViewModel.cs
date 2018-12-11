@@ -17,13 +17,16 @@ namespace Finance.ViewModel
 
         public ExpensesViewModel expensesContext;
 
-        public IncomeRepository inc;
+        //public IncomeRepository inc;
+        Model1 db = new Model1();
+        DBReposSQL db2 = new DBReposSQL();
 
         //in repository
         public IncomeViewModel()
         {
-            expensesContext = new ExpensesViewModel();
-            IncomeSource = new ObservableCollection<Income>(inc.GetAll());
+          //  expensesContext = new ExpensesViewModel();
+            //db2.Incomes.GetList();
+            IncomeSource = new ObservableCollection<Income>(db.Income.ToList());
             //ShowIncomes = new RelayCommand(o =>
             //{
             //    new IncomeRepository().GetAll();

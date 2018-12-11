@@ -9,7 +9,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
          xmlns:vm2="clr-namespace:Finance.ViewModel" x:Class="Finance.Window2"
         mc:Ignorable="d"
-        Title="Window2" Height="450" Width="800">
+        Title="Home Finance" Height="450" Width="800">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,25 +35,21 @@
                         </DataGrid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Расходы" DataContext= "{Binding expensesContext}">
+                <TabItem x:Name="ExpensesTab" Header="Расходы" DataContext= "{Binding expensesContext}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <DataGrid ItemsSource="{Binding ExpensesSourse}" Grid.Row="1">
-                            <!--<DataGrid.Columns>
-                                <DataGridComboBoxColumn Header="Категория" Width="1*"/>
-                                <DataGridTextColumn Header="Сумма" Width="1*"/>
-                                <DataGridTextColumn Header="Дата" Width="1*"/>
-                            </DataGrid.Columns>-->
+                       
                         </DataGrid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="План"/>
-                <TabItem Header="Бюджет"/>
-                <TabItem Header="Справка"/>
-                <TabItem Header="О программе"/>
+                <TabItem Header="План" x:Name="PlanTab"/>
+                <TabItem Header="Бюджет" x:Name="BugetTab"/>
+                <TabItem Header="Справка" x:Name="HelpTab"/>
+                <TabItem Header="О программе" x:Name="AboutTab"/>
 
             </TabControl>
         </StackPanel>

@@ -1,5 +1,6 @@
-﻿using DAL;
-using DAL.Repository;
+﻿
+//using DAL.Repository;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,18 +16,18 @@ namespace Finance.ViewModel
 
         public RelayCommand ShowExpenses;
 
-        public ExpensesViewModel expensesContext;
+      //  public ExpensesViewModel expensesContext;
 
-        
+        Model1 db = new Model1();
 
         //in repository
         public ExpensesViewModel()
         {
-            expensesContext = new ExpensesViewModel();
-            ExpensesSource = new ObservableCollection<Expenses>();
+          //  expensesContext = new ExpensesViewModel();
+            ExpensesSource = new ObservableCollection<Expenses>(db.Expenses.ToList());
             ShowExpenses = new RelayCommand(o =>
             {
-                new ExpensesRepository().GetAll();
+                db.Expenses.ToList();
             }
             ); //этот список потом надо засунуть в отбражение
         }

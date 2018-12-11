@@ -21,10 +21,15 @@ namespace Finance
     public partial class Window2 : Window
     {
         public Window2()
-            {
-                InitializeComponent();
-                this.DataContext = new MainWindowViewModel();
-                IncomeTab.DataContext = new IncomeViewModel();
-            }
+        {
+            InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
+            IncomeTab.DataContext = new IncomeViewModel();
+            ExpensesTab.DataContext = new ExpensesViewModel();
+            PlanTab.DataContext = new PlanViewModel();
+            AboutTab.DataContext = new AboutViewModel();
+            HelpTab.DataContext = new HelpViewModel();
+            BugetTab.DataContext = new BugetViewModel();
         }
+    }
 }
