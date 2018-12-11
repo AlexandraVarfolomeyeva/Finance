@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Finance.ViewModel
 {
-    public class PlanViewModel : BaseModel
+    public class PlanViewModel : BaseViewModel
     {
     }
 }

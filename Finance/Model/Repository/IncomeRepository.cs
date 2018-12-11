@@ -10,10 +10,10 @@ namespace DAL.Repository
 {
     public class IncomeRepository : IRepository<Income>
     {
-        private Model1 db;
+        private FinancesDBContext db;
 
 
-        public IncomeRepository(Model1 context)
+        public IncomeRepository(FinancesDBContext context)
         {
             this.db = context;
         }
@@ -32,7 +32,6 @@ namespace DAL.Repository
 
         public List<Income> GetAll()
         {
-            Model1 db = new Model1();
             return db.Income.Select(i => new Income
             {
                 Income_PK = i.Income_PK

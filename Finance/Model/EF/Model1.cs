@@ -5,9 +5,9 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model1 : DbContext
+    public partial class FinancesDBContext : DbContext
     {
-        public Model1()
+        public FinancesDBContext()
             : base("name=Model1")
         {
         }
@@ -64,7 +64,7 @@ namespace DAL
                 .IsUnicode(false);
 
             modelBuilder.Entity<Source_of_income>()
-                .Property(e => e.Name_Source_of_income)
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Source_of_income>()

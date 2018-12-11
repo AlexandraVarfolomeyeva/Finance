@@ -10,13 +10,13 @@ namespace DAL.Repository
 {
     public class DBReposSQL : IDbRepos
     {
-        private Model1 db;
+        private FinancesDBContext db;
         private IncomeRepository incomeRepository;
         private ExpensesRepository expensesRepository;
 
         public DBReposSQL()
         {
-            db = new Model1();
+            db = new FinancesDBContext();
         }
 
         public IRepository<Income> Incomes

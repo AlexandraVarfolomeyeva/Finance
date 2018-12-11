@@ -12,9 +12,9 @@ namespace DAL.Repository
 {
     public class ExpensesRepository : IRepository<Expenses>
     {
-        private Model1 db;
+        private FinancesDBContext db;
 
-        public ExpensesRepository(Model1 context)
+        public ExpensesRepository(FinancesDBContext context)
         {
             this.db = context;
         }
