@@ -47,6 +47,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,16 +67,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\ConfirmDialog.cs" />
-    <Compile Include="Model\EF\Model1.cs" />
     <Compile Include="Model\Entities\Category.cs" />
     <Compile Include="Model\Entities\Expenses.cs" />
+    <Compile Include="Helpers\ConfirmDialog.cs" />
     <Compile Include="Model\Entities\Income.cs" />
-    <Compile Include="Model\Entities\Plan.cs" />
-    <Compile Include="Model\Entities\Purchase.cs" />
-    <Compile Include="Model\Entities\Source_of_income.cs" />
-    <Compile Include="Model\Entities\sysdiagrams.cs" />
-    <Compile Include="Model\Entities\User.cs" />
+    <Compile Include="Model\EF\Model1.cs" />
     <Compile Include="Model\Interfaces\IDbRepos.cs" />
     <Compile Include="Model\Interfaces\IRepository.cs" />
     <Compile Include="Model\Repository\CategoryRepository.cs" />
@@ -83,11 +80,18 @@
     <Compile Include="Model\Repository\IncomeRepository.cs" />
     <Compile Include="Model\Repository\PlanRepository.cs" />
     <Compile Include="Model\Repository\PurchaseRepository.cs" />
+    <Compile Include="Model\Entities\Necessity.cs" />
+    <Compile Include="Model\Entities\Plan.cs" />
+    <Compile Include="Model\Entities\Purchase.cs" />
+    <Compile Include="Model\Entities\Source_of_income.cs" />
+    <Compile Include="Model\Entities\sysdiagrams.cs" />
+    <Compile Include="Model\Entities\User.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
     <Compile Include="ViewModel\BugetViewModel.cs" />
     <Compile Include="ViewModel\EditExpensesViewModel.cs" />
     <Compile Include="ViewModel\EditIncomesViewModel.cs" />
+    <Compile Include="ViewModel\EditPlanViewModel.cs" />
     <Compile Include="ViewModel\ExpensesViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="View\EditExpenses.xaml.cs">
@@ -96,13 +100,16 @@
     <Compile Include="View\EditIncome.xaml.cs">
       <DependentUpon>EditIncome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditPlan.xaml.cs">
+      <DependentUpon>EditPlan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LogInWindowViewModel.cs" />
     <Compile Include="ViewModel\IncomeViewModel.cs" />
     <Compile Include="ViewModel\PlanViewModel.cs" />
-    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Model\Entities\RelayCommand.cs" />
     <Compile Include="View\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
@@ -111,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditIncome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,4 @@
-namespace DAL
+namespace Finance
 {
     using System;
     using System.Collections.Generic;
@@ -14,28 +14,22 @@ namespace DAL
         {
             Expenses = new HashSet<Expenses>();
             Income = new HashSet<Income>();
-            Plan = new HashSet<Plan>();
-            Purchase = new HashSet<Purchase>();
         }
 
-        [Key]
+        [Required]
         [StringLength(30)]
-        public string Login_PK { get; set; }
+        public string Login { get; set; }
 
         [Required]
         [StringLength(20)]
         public string Password { get; set; }
+
+        public int Id { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenses> Expenses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Income> Income { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Plan> Plan { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Purchase> Purchase { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace DAL
+namespace Finance
 {
     using System;
     using System.Collections.Generic;
@@ -25,6 +25,7 @@ namespace DAL
 
         [Required]
         [StringLength(30)]
+       // [Column(TypeName = "int")]
         public string Login_FK { get; set; }
 
         public int Category_FK { get; set; }

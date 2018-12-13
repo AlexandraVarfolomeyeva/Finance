@@ -1,4 +1,4 @@
-namespace DAL
+namespace Finance
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,5 @@ namespace DAL
         [Required]
         [StringLength(30)]
         public string Login_FK { get; set; }
-
-        public virtual User User { get; set; }
     }
 }

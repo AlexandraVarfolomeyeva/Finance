@@ -77,7 +77,7 @@ namespace Finance.ViewModel
         public void DeleteExpenses(Object parameter)
         {
 
-            if (ConfirmDialog.Confirm($"Удалить доход {SelectedExpenses.Sum_expenses} ({SelectedExpenses.Category.Category_name}) от {SelectedExpenses.Date_purchase}?"))
+            if (ConfirmDialog.Confirm($"Удалить покупку {SelectedExpenses.Name} {SelectedExpenses.Sum} ({SelectedExpenses.Category.Category_name}) от {SelectedExpenses.Date}?"))
             {
                ExpensesSource.Remove(SelectedExpenses);
                 db.SaveChanges();

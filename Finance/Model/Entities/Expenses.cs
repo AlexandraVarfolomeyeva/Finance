@@ -1,4 +1,4 @@
-namespace DAL
+namespace Finance
 {
     using System;
     using System.Collections.Generic;
@@ -8,27 +8,25 @@ namespace DAL
 
     public partial class Expenses
     {
-        [Key]
-        public int Expenses_PK { get; set; }
+        public int Id { get; set; }
 
         [StringLength(255)]
-        public string Name_expenses { get; set; }
+        public string Name { get; set; }
 
-        public double Sum_expenses { get; set; }
+        public double Sum { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Date_purchase { get; set; }
+        public DateTime Date { get; set; }
 
         public int Necessity { get; set; }
 
-        [Column ("Categoty_FK")]
-        public int Category_FK { get; set; }
+        public int CategoryId { get; set; }
 
-        [Required]
-        [StringLength(30)]
-        public string Login_FK { get; set; }
+        public int LoginId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public virtual Necessity Necessity1 { get; set; }
 
         public virtual User User { get; set; }
     }

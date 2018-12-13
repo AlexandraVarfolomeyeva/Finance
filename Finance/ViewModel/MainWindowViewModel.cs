@@ -27,8 +27,8 @@ namespace Finance.ViewModel
             db = new FinancesDBContext();
             IncomesTabItemVM = new IncomeViewModel(db);
             ExpensesTabItemVM = new ExpensesViewModel(db);
-            BudgetTabItemVM = new BudgetViewModel();
-            CreditsTabItemVM = new PlanViewModel();
+            BudgetTabItemVM = new BudgetViewModel(db);
+            CreditsTabItemVM = new PlanViewModel(db);
         }
         public event PropertyChangedEventHandler PropertyChanged;
 

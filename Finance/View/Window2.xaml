@@ -14,20 +14,20 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <!--<ColumnDefinition Width="200"/>-->
+           
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <TabControl x:Name="TabControl" TabStripPlacement="Left" HorizontalAlignment="Stretch" MinHeight="417" Margin="0,0,-0.4,0">
+            <TabControl x:Name="TabControl" TabStripPlacement="Left" HorizontalAlignment="Stretch" MinHeight="500" Margin="0,0,0,0">
                 <TabItem Header="Доходы" x:Name="IncomeTab" DataContext="{Binding Path=IncomesTabItemVM}">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"></RowDefinition>
                             <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                           
                         </Grid.RowDefinitions>
                         <ListView Grid.Row="1" ItemsSource="{Binding Path = IncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedIncome, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.ItemContainerStyle>
+                            <ListView.ItemContainerStyle >
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="ToolTipService.ToolTip">
                                         <Setter.Value>
@@ -42,21 +42,12 @@
                             <ListView.View>
                                 <GridView x:Name="IncomeGridView">
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Source_of_income.Name}"/>
+                                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source_of_income.Name}"/>
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
 
-                        <DataGrid Grid.Row="2" ItemsSource="{Binding IncomeSource }">
-                            <!--<DataGrid.Columns>
-                                <DataGridComboBoxColumn Header="Источник" Width="1*"/>
-                                <DataGridTextColumn Header="Сумма" Width="1*"/>
-                                <DataGridTextColumn Header="Дата" Width="1*"/>
-                            </DataGrid.Columns>-->
-                            
-
-                        </DataGrid>
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
                             <Button Content="ADD" Command="{Binding Path=AddIncomeCommand}"/>
                             <Button Content="UPD" Command="{Binding Path=UpdateIncomeCommand}"/>
@@ -65,20 +56,118 @@
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="ExpensesTab" Header="Расходы"  DataContext="{Binding Path=ExpensesTabItemVM}">
-                    <Grid>
+                    <Grid Margin="10">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="20"></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+
                         </Grid.RowDefinitions>
-                        <DataGrid ItemsSource="{Binding Path = ExpensesSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
-                       
-                        </DataGrid>
+                        <ListView Grid.Row="1" ItemsSource="{Binding Path = ExpensesSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="ToolTipService.ToolTip">
+                                        <Setter.Value>
+                                            <ToolTip Background="SkyBlue">
+                                                <TextBlock Text="{Binding Path=Sum}"/>
+                                            </ToolTip>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Background" Value="LightBlue"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView x:Name="ExpensesGridView">
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
+                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
+                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Category_name}"/>
+                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Header="Важность" DisplayMemberBinding="{Binding Path=Necessity1.Name}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+                            <Button Content="ADD" Command="{Binding Path=AddExpensesCommand}"/>
+                            <Button Content="UPD" Command="{Binding Path=UpdateExpensesCommand}"/>
+                            <Button Content="DEL" Command="{Binding Path=DeleteExpensesCommand}"/>
+                        </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Header="План" x:Name="PlanTab"/>
-                <TabItem Header="Бюджет" x:Name="BugetTab"/>
-                <TabItem Header="Справка" x:Name="HelpTab"/>
-                <TabItem Header="О программе" x:Name="AboutTab"/>
+                <TabItem  Header="План" x:Name="PlanTab"  DataContext="{Binding Path=PlanTabItemVM}">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+
+                        </Grid.RowDefinitions>
+                        <ListView Grid.Row="1" ItemsSource="{Binding Path = PlanSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlan, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="ToolTipService.ToolTip">
+                                        <Setter.Value>
+                                            <ToolTip Background="SkyBlue">
+                                                <TextBlock Text="{Binding Path=Sum}"/>
+                                            </ToolTip>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Background" Value="LightBlue"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView x:Name="PlanGridView">
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
+                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
+                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Category_Name}"/>
+                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Header="Важность" DisplayMemberBinding="{Binding Path=Necessity.Name}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
+                            <Button Content="ADD" Command="{Binding Path=AddPlanCommand}"/>
+                            <Button Content="UPD" Command="{Binding Path=UpdatePlanCommand}"/>
+                            <Button Content="DEL" Command="{Binding Path=DeletePlanCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Бюджет" x:Name="BugetTab" DataContext="{Binding Path=BugetTabItemVM}">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+
+                        </Grid.RowDefinitions>
+                        <ListView Grid.Row="1" ItemsSource="{Binding Path = BugetSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedBuget, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="ToolTipService.ToolTip">
+                                        <Setter.Value>
+                                            <ToolTip Background="SkyBlue">
+                                                <TextBlock Text="{Binding Path=Sum}"/>
+                                            </ToolTip>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Background" Value="LightBlue"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.View>
+                                <GridView x:Name="BugetGridView">
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
+                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
+                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Category_Name}"/>
+                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Header="Важность" DisplayMemberBinding="{Binding Path=Necessity.Name}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                     
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Справка" x:Name="HelpTab">
+                    
+                </TabItem>
+                <TabItem Header="О программе" x:Name="AboutTab">
+                    
+                </TabItem>
 
             </TabControl>
         </StackPanel>

@@ -30,7 +30,7 @@ namespace Finance.ViewModel
             else
             {
                 CurrentExpenses = new Expenses();
-                CurrentExpenses.Date_purchase = DateTime.Now;
+                CurrentExpenses.Date = DateTime.Now;
                 ApplyChangesCommand = new RelayCommand(AddExpenses, CanExe);
             }
             CurrentExpenses.User = dbContext.User.FirstOrDefault();
@@ -50,7 +50,7 @@ namespace Finance.ViewModel
 
         public bool CanExe(object parameter)
         {
-            return !(CurrentExpenses == null) && CurrentExpenses.Sum_expenses > 0 && CurrentExpenses.Category != null;
+            return !(CurrentExpenses == null) && CurrentExpenses.Sum > 0 && CurrentExpenses.Category != null;
         }
     }
 }

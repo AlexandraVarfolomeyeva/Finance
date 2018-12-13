@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DAL.Interfaces;
+using Finance;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,7 +35,7 @@ namespace DAL.Repository
         {
             return db.Income.Select(i => new Income
             {
-                Income_PK = i.Income_PK
+                Id = i.Id
             }).ToList();
         }
 

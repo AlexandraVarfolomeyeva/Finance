@@ -1,4 +1,4 @@
-namespace DAL
+namespace Finance
 {
     using System;
     using System.Collections.Generic;

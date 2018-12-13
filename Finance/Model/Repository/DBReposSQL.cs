@@ -1,5 +1,6 @@
 ﻿
 using DAL.Interfaces;
+using Finance;
 using System;
 using System.Collections.Generic;
 using System.Linq;

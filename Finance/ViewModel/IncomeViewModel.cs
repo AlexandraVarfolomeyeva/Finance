@@ -35,7 +35,6 @@ namespace Finance.ViewModel
 
         public ExpensesViewModel expensesContext;
 
-        //public IncomeRepository inc;
         private FinancesDBContext db;
         DBReposSQL db2 = new DBReposSQL();
 
@@ -47,14 +46,6 @@ namespace Finance.ViewModel
             AddIncomeCommand = new RelayCommand(AddIncome);
             UpdateIncomeCommand = new RelayCommand(UpdateIncome, CanExecute);
             DeleteIncomeCommand = new RelayCommand(DeleteIncome, CanExecute);
-
-            //db2.Incomes.GetList();
-            //IncomeSource = new ObservableCollection<Income>(db.Income.ToList());
-            //ShowIncomes = new RelayCommand(o =>
-            //{
-            //    new IncomeRepository().GetAll();
-            //}
-            /* );*/ //этот список потом надо засунуть в отбражение
         }
 
         private void LoadIncomes()

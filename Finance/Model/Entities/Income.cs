@@ -1,4 +1,4 @@
-namespace DAL
+namespace Finance
 {
     using System;
     using System.Collections.Generic;
@@ -9,19 +9,16 @@ namespace DAL
     [Table("Income")]
     public partial class Income
     {
-        [Key]
-        public int Income_PK { get; set; }
+        public int Id { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
 
         public double Sum { get; set; }
 
-        public int Source_of_the_income_FK { get; set; }
+        public int Source { get; set; }
 
-        [Required]
-        [StringLength(30)]
-        public string Login_FK { get; set; }
+        public int LoginId { get; set; }
 
         public virtual Source_of_income Source_of_income { get; set; }
 

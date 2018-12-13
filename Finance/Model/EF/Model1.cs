@@ -1,4 +1,4 @@
-namespace DAL
+namespace Finance
 {
     using System;
     using System.Data.Entity;
@@ -8,13 +8,14 @@ namespace DAL
     public partial class FinancesDBContext : DbContext
     {
         public FinancesDBContext()
-            : base("name=Model1")
+            : base("name=Model11")
         {
         }
 
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Expenses> Expenses { get; set; }
         public virtual DbSet<Income> Income { get; set; }
+        public virtual DbSet<Necessity> Necessity { get; set; }
         public virtual DbSet<Plan> Plan { get; set; }
         public virtual DbSet<Purchase> Purchase { get; set; }
         public virtual DbSet<Source_of_income> Source_of_income { get; set; }
@@ -30,26 +31,22 @@ namespace DAL
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.Expenses)
                 .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.Category_FK)
-                .WillCascadeOnDelete(false);
+                .HasForeignKey(e => e.CategoryId);
 
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.Plan)
                 .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.Category_FK)
+                .HasForeignKey(e => e.Category_FK);
+
+            modelBuilder.Entity<Expenses>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Necessity>()
+                .HasMany(e => e.Expenses)
+                .WithRequired(e => e.Necessity1)
+                .HasForeignKey(e => e.Necessity)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Expenses>()
-                .Property(e => e.Name_expenses)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Expenses>()
-                .Property(e => e.Login_FK)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Income>()
-                .Property(e => e.Login_FK)
-                .IsUnicode(false);
 
             modelBuilder.Entity<Plan>()
                 .Property(e => e.Login_FK)
@@ -70,17 +67,15 @@ namespace DAL
             modelBuilder.Entity<Source_of_income>()
                 .HasMany(e => e.Income)
                 .WithRequired(e => e.Source_of_income)
-                .HasForeignKey(e => e.Source_of_the_income_FK)
-                .WillCascadeOnDelete(false);
+                .HasForeignKey(e => e.Source);
 
             modelBuilder.Entity<Source_of_income>()
                 .HasMany(e => e.Plan)
                 .WithRequired(e => e.Source_of_income)
-                .HasForeignKey(e => e.Source_of_income_FK)
-                .WillCascadeOnDelete(false);
+                .HasForeignKey(e => e.Source_of_income_FK);
 
             modelBuilder.Entity<User>()
-                .Property(e => e.Login_PK)
+                .Property(e => e.Login)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
@@ -90,25 +85,13 @@ namespace DAL
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Expenses)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.Login_FK)
+                .HasForeignKey(e => e.LoginId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Income)
                 .WithRequired(e => e.User)
-                .HasForeignKey(e => e.Login_FK)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Plan)
-                .WithRequired(e => e.User)
-                .HasForeignKey(e => e.Login_FK)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Purchase)
-                .WithRequired(e => e.User)
-                .HasForeignKey(e => e.Login_FK)
+                .HasForeignKey(e => e.LoginId)
                 .WillCascadeOnDelete(false);
         }
     }
