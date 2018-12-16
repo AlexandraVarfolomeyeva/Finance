@@ -33,10 +33,10 @@ namespace Finance.ViewModel
             set { deleteIncomeCommand = value; }
         }
 
-        public ExpensesViewModel expensesContext;
+        //public ExpensesViewModel expensesContext;
 
         private FinancesDBContext db;
-        DBReposSQL db2 = new DBReposSQL();
+        //DBReposSQL db2 = new DBReposSQL();
 
         //in repository
         public IncomeViewModel(FinancesDBContext dbcontext)

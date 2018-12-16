@@ -23,14 +23,11 @@ namespace Finance
         [Column(TypeName = "date")]
         public DateTime Date_To { get; set; }
 
-        [Required]
-        [StringLength(30)]
-       // [Column(TypeName = "int")]
-        public string Login_FK { get; set; }
+        public int LoginId { get; set; }
 
-        public int Category_FK { get; set; }
+        public int CategoryId { get; set; }
 
-        public int Source_of_income_FK { get; set; }
+        public int SourceId { get; set; }
 
         public virtual Category Category { get; set; }
 

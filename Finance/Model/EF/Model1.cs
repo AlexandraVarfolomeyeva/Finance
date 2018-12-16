@@ -8,7 +8,7 @@ namespace Finance
     public partial class FinancesDBContext : DbContext
     {
         public FinancesDBContext()
-            : base("name=Model11")
+            : base("name=Model1")
         {
         }
 
@@ -36,7 +36,7 @@ namespace Finance
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.Plan)
                 .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.Category_FK);
+                .HasForeignKey(e => e.CategoryId);
 
             modelBuilder.Entity<Expenses>()
                 .Property(e => e.Name)
@@ -49,8 +49,8 @@ namespace Finance
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Plan>()
-                .Property(e => e.Login_FK)
-                .IsUnicode(false);
+                .Property(e => e.LoginId);
+                //IsUnicode(false);
 
             modelBuilder.Entity<Purchase>()
                 .Property(e => e.Name)
@@ -72,7 +72,7 @@ namespace Finance
             modelBuilder.Entity<Source_of_income>()
                 .HasMany(e => e.Plan)
                 .WithRequired(e => e.Source_of_income)
-                .HasForeignKey(e => e.Source_of_income_FK);
+                .HasForeignKey(e => e.SourceId);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Login)

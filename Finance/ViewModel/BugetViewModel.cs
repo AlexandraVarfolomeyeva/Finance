@@ -18,6 +18,11 @@ namespace Finance.ViewModel
         public BudgetViewModel(FinancesDBContext dbcontext)
         {
             db = dbcontext;
-         }
+        }
+
+
+
+
+
     }
 }

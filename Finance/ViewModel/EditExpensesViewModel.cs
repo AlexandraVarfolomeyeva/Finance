@@ -15,13 +15,15 @@ namespace Finance.ViewModel
 
         FinancesDBContext dbContext;
         public Expenses CurrentExpenses { get; set; }
-        public ObservableCollection<Source_of_income> ExpensesSourceList { get; set; }
+        public ObservableCollection<Category> ExpensesCategoryList { get; set; }
+        public ObservableCollection<Necessity> ExpensesNecessityList { get; set; }
         public RelayCommand ApplyChangesCommand { get; set; }
 
         public EditExpensesViewModel(FinancesDBContext dbContext, Expenses expenses)
         {
             this.dbContext = dbContext;
-            ExpensesSourceList = dbContext.Source_of_income.Local;
+            ExpensesCategoryList = dbContext.Category.Local;
+            ExpensesNecessityList = dbContext.Necessity.Local;
             if (expenses != null)
             {
                 CurrentExpenses = expenses;
