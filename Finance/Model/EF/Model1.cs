@@ -10,6 +10,9 @@ namespace Finance
         public FinancesDBContext()
             : base("name=Model1")
         {
+            Source_of_income.Load();
+            Category.Load();
+            Necessity.Load();
         }
 
         public virtual DbSet<Category> Category { get; set; }

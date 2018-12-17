@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Finance.View"
         mc:Ignorable="d"
-        Title="EditIncome" Height="200" Width="300" Foreground="Wheat" WindowStartupLocation="CenterScreen"
+        Title="EditIncome" Height="160" Width="300" Foreground="Wheat" WindowStartupLocation="CenterScreen"
         xmlns:xc="clr-namespace:Finance.Helpers"
         xc:DialogCloser.DialogResult="{Binding DialogResult, UpdateSourceTrigger=Explicit}" x:Name="ddd">
     <Window.Resources>
@@ -55,7 +55,7 @@
 
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="auto" HorizontalAlignment="Center">
-            <Button Content="Применить" Background="White" Height="auto" Margin="5" HorizontalAlignment="Center" Style="{StaticResource StyleForButton}" Command="{Binding Path=ApplyChangesCommand}" IsCancel="True"/>
+            <Button Content="Применить" Background="White" Height="auto" Margin="5" HorizontalAlignment="Center" Style="{StaticResource StyleForButton}" Command="{Binding Path=ApplyChangesCommand}" IsCancel="True" Click="CloseWind"/>
             <Button Content="Отмена" Background="White" Height="auto" Margin="5" HorizontalAlignment="Center" Style="{StaticResource StyleForButton}" IsCancel="True"/>
         </StackPanel>
 

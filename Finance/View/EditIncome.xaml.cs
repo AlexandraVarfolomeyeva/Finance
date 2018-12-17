@@ -23,5 +23,10 @@ namespace Finance.View
         {
             InitializeComponent();
         }
+
+        private void CloseWind(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

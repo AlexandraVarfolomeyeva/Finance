@@ -18,7 +18,7 @@ namespace Finance.ViewModel
         public Income CurrentIncome { get; set; }
         public ObservableCollection<Source_of_income> IncomeSourceList { get; set; }
         public RelayCommand ApplyChangesCommand { get; set; }
-
+         
         public EditIncomesViewModel(FinancesDBContext dbContext, Income income)
         {
             this.dbContext = dbContext;

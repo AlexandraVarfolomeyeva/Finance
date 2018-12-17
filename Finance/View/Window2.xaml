@@ -24,7 +24,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"></RowDefinition>
                             <RowDefinition Height="2*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <!--<RowDefinition Height="*"></RowDefinition>-->
                         </Grid.RowDefinitions>
                         <ListView Grid.Row="1" ItemsSource="{Binding Path = IncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedIncome, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.ItemContainerStyle >
@@ -49,7 +49,7 @@
                         </ListView>
 
 
-                        <Grid Grid.Row="2">
+                        <!--<Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -76,17 +76,17 @@
                                         <TextBlock Text="{Binding Path=Name}"/>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            </ComboBox>-->
 
 
 
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="auto" HorizontalAlignment="Center">
+                            <!--<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="auto" HorizontalAlignment="Center">
                                 <Button Content="Применить" Background="White" Height="auto" Margin="5" HorizontalAlignment="Center"  Command="{Binding Path=ApplyChangesCommand}" IsCancel="True"/>
                                 <Button Content="Отмена" Background="White" Height="auto" Margin="5" HorizontalAlignment="Center"  IsCancel="True"/>
                             </StackPanel>
 
-                        </Grid>
+                        </Grid>-->
 
 
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
@@ -101,7 +101,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"></RowDefinition>
                             <RowDefinition Height="2*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <!--<RowDefinition Height="*"></RowDefinition>-->
                         </Grid.RowDefinitions>
                         <ListView Grid.Row="1" ItemsSource="{Binding Path = ExpensesSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.ItemContainerStyle>
@@ -126,7 +126,7 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Grid Grid.Row="2">
+                        <!--<Grid Grid.Row="2">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -177,7 +177,7 @@
                                 <Button Content="Отмена" Background="White" Height="auto" Margin="5" HorizontalAlignment="Center"  IsCancel="True"/>
                             </StackPanel>
 
-                        </Grid>
+                        </Grid>-->
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5">
                             <Button Content="ADD" Command="{Binding Path=AddExpensesCommand}"/>
                             <Button Content="UPD" Command="{Binding Path=UpdateExpensesCommand}"/>
@@ -257,33 +257,29 @@
                 </TabItem>
                 <TabItem Header="Справка" x:Name="HelpTab">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Label TextBlock.TextAlignment="Justify" Grid.Row="0">
-                        Данное приложение предназначено для контроля личного бюджета.
-                    </Label>
-                        <Label TextBlock.TextAlignment="Justify" Grid.Row="1">
-                        На вкладке "Доходы" представлена информация о денежных поступлениях. 
-                    </Label>
-                        <Label TextBlock.TextAlignment="Justify" Grid.Row="2">
-                            На вкладке "Расходы" представлена информация о совершенных покупках или оплаченных услугах.
-                        </Label>
-                        <Label TextBlock.TextAlignment="Justify" Grid.Row="3">
-                            На вкладке "План" доходы пользователь может внести информацию о планируемых поступлениях и планируемых приобретениях.
-                        </Label>
-                        <Label TextBlock.TextAlignment="Justify" Grid.Row="4">
-                            На вкладке "Бюджет" представлена статистическая информация.
-                        </Label>
+                       
+                        <RichTextBox Margin="10" IsReadOnly="True">
+                            <FlowDocument>
+                                <Paragraph FontSize="12">Данное приложение предназначено для контроля личного бюджета.</Paragraph>
+                                <Paragraph TextAlignment="Justify" FontSize="12">На вкладке "Доходы" представлена информация о денежных поступлениях.</Paragraph>
+                                <Paragraph TextAlignment="Justify" FontSize="12">На вкладке "Расходы" представлена информация о совершенных покупках или оплаченных услугах.</Paragraph>
+                                <Paragraph TextAlignment="Justify" FontSize="12">На вкладке "План" доходы пользователь может внести информацию о планируемых поступлениях и планируемых приобретениях.</Paragraph>
+                                <Paragraph TextAlignment="Justify" FontSize="12">На вкладке "Бюджет" представлена статистическая информация.</Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+
+                     
 
                     </Grid>
                 </TabItem>
                 <TabItem Header="О программе" x:Name="AboutTab">
-                    
+                    <Grid>
+                        <RichTextBox Margin="10" IsReadOnly="True">
+                            <FlowDocument>
+                                <Paragraph FontSize="12">Программа разработана студенткой 3-41* Варфоломеевой Александрой в качестве курсового проекта по дисциплине "Конструирование программного обеспечения".</Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </Grid>
                 </TabItem>
 
             </TabControl>
