@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
-using DAL.Repository;
+//using DAL.Repository;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -20,7 +20,7 @@ namespace Finance.ViewModel
         public IncomeViewModel IncomesTabItemVM { set; get; }
         public ExpensesViewModel ExpensesTabItemVM { set; get; }
         public BudgetViewModel BudgetTabItemVM { set; get; }
-        public PlanViewModel CreditsTabItemVM { set; get; }
+        public PlanViewModel PlanTabItemVM { set; get; }
 
         public MainWindowViewModel()
         {
@@ -28,7 +28,7 @@ namespace Finance.ViewModel
             IncomesTabItemVM = new IncomeViewModel(db);
             ExpensesTabItemVM = new ExpensesViewModel(db);
             BudgetTabItemVM = new BudgetViewModel(db);
-            CreditsTabItemVM = new PlanViewModel(db);
+            PlanTabItemVM = new PlanViewModel(db);
         }
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,7 +1,7 @@
 ﻿
 //using DAL.Repository;
 using DAL;
-using DAL.Repository;
+//using DAL.Repository;
 using Finance.Helpers;
 using System;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace Finance.ViewModel
 
         public ExpensesViewModel expensesContext;
         private FinancesDBContext db;
-        DBReposSQL db2 = new DBReposSQL();
+        //DBReposSQL db2 = new DBReposSQL();
 
         //in repository
         public ExpensesViewModel(FinancesDBContext dbcontext)

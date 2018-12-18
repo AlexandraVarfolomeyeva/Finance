@@ -13,6 +13,7 @@ namespace Finance
         {
             Income = new HashSet<Income>();
             Plan = new HashSet<Plan>();
+            PlanIncome = new HashSet<PlanIncome>();
         }
 
         public int Id { get; set; }
@@ -26,5 +27,8 @@ namespace Finance
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Plan> Plan { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlanIncome> PlanIncome { get; set; }
     }
 }

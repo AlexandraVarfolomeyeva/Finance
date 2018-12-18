@@ -14,6 +14,7 @@ namespace Finance
         {
             Expenses = new HashSet<Expenses>();
             Plan = new HashSet<Plan>();
+            PlanExpenses = new HashSet<PlanExpenses>();
         }
 
         [Key]
@@ -28,5 +29,8 @@ namespace Finance
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Plan> Plan { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlanExpenses> PlanExpenses { get; set; }
     }
 }

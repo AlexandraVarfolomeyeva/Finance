@@ -1,5 +1,6 @@
 namespace Finance
-{
+{ 
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,6 @@ namespace Finance
     public partial class Plan
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Plan_PK { get; set; }
 
         public double Income { get; set; }

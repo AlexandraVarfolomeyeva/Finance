@@ -13,6 +13,8 @@ namespace DAL.Interfaces
         IRepository<Income> Incomes { get; }
         IRepository<Expenses> ExpensesRep { get; }
         IRepository<Plan> Plans { get; }
+        IRepository<PlanIncome> PlansIncome { get; }
+        IRepository<PlanExpenses> PlansExpenses { get; }
         IRepository<Category> Categories { get; }
         IRepository<Purchase> Purchases { get; }
         IRepository<Source_of_income> Sources { get; }

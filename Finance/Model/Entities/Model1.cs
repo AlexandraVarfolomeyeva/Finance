@@ -5,14 +5,11 @@ namespace Finance
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class FinancesDBContext : DbContext
+    public partial class Model1 : DbContext
     {
-        public FinancesDBContext()
-            : base("name=Model1")
+        public Model1()
+            : base("name=Model11")
         {
-            Source_of_income.Load();
-            Category.Load();
-            Necessity.Load();
         }
 
         public virtual DbSet<Category> Category { get; set; }

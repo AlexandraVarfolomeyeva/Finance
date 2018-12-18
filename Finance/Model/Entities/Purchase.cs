@@ -16,8 +16,8 @@ namespace Finance
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(30)]
-        public string Login_FK { get; set; }
+        public int UserId { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

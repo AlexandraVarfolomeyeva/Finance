@@ -68,20 +68,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Entities\Category.cs" />
-    <Compile Include="Model\Entities\Expenses.cs" />
     <Compile Include="Helpers\ConfirmDialog.cs" />
-    <Compile Include="Model\Entities\Income.cs" />
     <Compile Include="Model\EF\Model1.cs" />
+    <Compile Include="Model\Entities\Expenses.cs" />
+    <Compile Include="Model\Entities\Income.cs" />
+    <Compile Include="Model\Entities\RelayCommand.cs" />
     <Compile Include="Model\Interfaces\IDbRepos.cs" />
     <Compile Include="Model\Interfaces\IRepository.cs" />
-    <Compile Include="Model\Repository\CategoryRepository.cs" />
-    <Compile Include="Model\Repository\DBReposSQL.cs" />
-    <Compile Include="Model\Repository\ExpensesRepository.cs" />
-    <Compile Include="Model\Repository\IncomeRepository.cs" />
-    <Compile Include="Model\Repository\PlanRepository.cs" />
-    <Compile Include="Model\Repository\PurchaseRepository.cs" />
+    <Compile Include="Model\Entities\Model1.cs" />
     <Compile Include="Model\Entities\Necessity.cs" />
     <Compile Include="Model\Entities\Plan.cs" />
+    <Compile Include="Model\Entities\PlanExpenses.cs" />
+    <Compile Include="Model\Entities\PlanIncome.cs" />
     <Compile Include="Model\Entities\Purchase.cs" />
     <Compile Include="Model\Entities\Source_of_income.cs" />
     <Compile Include="Model\Entities\sysdiagrams.cs" />
@@ -103,13 +101,15 @@
     <Compile Include="View\EditPlan.xaml.cs">
       <DependentUpon>EditPlan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditPurchase.xaml.cs">
+      <DependentUpon>EditPurchase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\LogInWindowViewModel.cs" />
     <Compile Include="ViewModel\IncomeViewModel.cs" />
     <Compile Include="ViewModel\PlanViewModel.cs" />
-    <Compile Include="Model\Entities\RelayCommand.cs" />
     <Compile Include="View\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
@@ -122,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditPurchase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
