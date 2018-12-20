@@ -11,7 +11,7 @@ namespace Finance.ViewModel
     {
         //public ObservableCollection<Expenses> ExpensesPeriodSource { get; set; }
         public ObservableCollection<Income> IncomePeriodSource { get; set; }
-        DateTime DateFrom, DateTo;
+        //public DateTime DateFrom, DateTo;
         public ExpensesViewModel expensesContext;
         private FinancesDBContext db;
 
@@ -27,25 +27,32 @@ namespace Finance.ViewModel
         public BudgetViewModel(FinancesDBContext dbcontext)
         {
             db = dbcontext;
-            SPCommand = new RelayCommand(ExecuteSP, CanExe);
+            SPCommand = new RelayCommand(ExecuteSP);
         }
 
         private void ExecuteSP(object parameter)
         {
-            db.Income.Include(i => i.Source_of_income).Include(i => i.User).Load();
-            db.Expenses.Include(i => i.Category).Include(i => i.User).Load();
-        
-            System.Data.SqlClient.SqlParameter param1 = new System.Data.SqlClient.SqlParameter("@beginning", DateFrom);
-            System.Data.SqlClient.SqlParameter param2 = new System.Data.SqlClient.SqlParameter("@ending", DateTo);
-            var ExpensesPeriodSource = db.Database.SqlQuery<Expenses>("ExpensesPeriod @beginning, @ending", new object[] { param1, param2});
-        }
+            try
+            {
+                var stringList = parameter as string[];
 
+                DateTime DateFrom = DateTime.Parse(stringList[0]);
+                DateTime DateTo = DateTime.Parse(stringList[1]);
+                // Query the data.
+                db.Income.Include(i => i.Source_of_income).Include(i => i.User).Load();
+                db.Expenses.Include(i => i.Category).Include(i => i.User).Load();
 
-        private bool CanExe(object parameter)
-        {
-            return true; //если таблицы не пустые?
-        }
- 
+                System.Data.SqlClient.SqlParameter param1 = new System.Data.SqlClient.SqlParameter("@beginning", DateFrom);
+                System.Data.SqlClient.SqlParameter param2 = new System.Data.SqlClient.SqlParameter("@ending", DateTo);
+                var ExpensesPeriodSource = db.Database.SqlQuery<Expenses>("ExpensesPeriod @beginning, @ending", new object[] { param1, param2 });
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+         }
+
 
     }
 }

@@ -14,6 +14,7 @@ namespace Finance
         [Required]
         [StringLength(50)]
         public string Expenses { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
 

@@ -4,14 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       
-        xmlns:vm1="Finance.ViewModel"
+        xmlns:vm1="clr-namespace:Finance.Helpers"
         xmlns:local="clr-namespace:Finance"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
-         xmlns:vm2="clr-namespace:Finance.ViewModel" x:Class="Finance.Window2"
-        mc:Ignorable="d"
+         xmlns:vm2="clr-namespace:Finance.ViewModel" 
+        x:Class="Finance.Window2" mc:Ignorable="d"
         Title="Home Finance" MinHeight="450" MinWidth="800" WindowState="Maximized"
      >
-
+    <Window.Resources>
+        <vm1:ICommandMultiDateConverter  x:Key="multiDateConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
            
@@ -271,7 +274,7 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Бюджет"  DataContext="{Binding Path=BugetTabItemVM}">
+                <TabItem Header="Бюджет"  DataContext="{Binding Path=BugetTabItemVM}" Height="24" Margin="-2,-2,0.4,-2" VerticalAlignment="Top">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"></RowDefinition>
@@ -401,11 +404,21 @@
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Button Content="Execute" Command="{Binding Path=SPCommand}" Grid.Column="4" Margin="5,30,5,10"/>
+                            <Button Content="Execute" Command="{Binding Path=SPCommand}" Grid.Column="4" Margin="5,30,5,10">
+                                <Button.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=multiDateConverter}">
+                                        <Binding ElementName="fromDatePicker" Path="Text"></Binding>
+                                        <Binding ElementName="toDatePicker" Path="Text"></Binding>
+                                    </MultiBinding>
+                                </Button.CommandParameter>
+                                <!--<Button.Command>
+                                    <Binding Path="SPCommand"></Binding>
+                                </Button.Command>-->
+                            </Button>
                             <TextBlock Text="От" Grid.Column="0" Margin="5,30,5,5"/>
-                            <DatePicker x:Name="From" Grid.Column="1" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010" SelectedDate="{Binding Path=DateFrom, Mode=TwoWay}"/>
-                            <TextBlock Text="До" Grid.Column="2" Margin="5,30,5,5"/>
-                            <DatePicker x:Name="To" Grid.Column="3" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2016" SelectedDate="{Binding Path=DateTo, Mode=TwoWay}"/>
+                            <DatePicker Name="fromDatePicker" Grid.Column="1" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010"/>  <!--SelectedDate="{Binding Path=DateFrom, Mode=TwoWay}"/>-->
+                            <TextBlock  Text="До" Grid.Column="2" Margin="5,30,5,5"/>
+                            <DatePicker Name="toDatePicker" Grid.Column="3" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010"/> <!--SelectedDate="{Binding Path=DateTo, Mode=TwoWay}"/>-->
                         </Grid>
                     </Grid>
                 </TabItem>
