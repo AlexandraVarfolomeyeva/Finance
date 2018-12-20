@@ -36,7 +36,7 @@ namespace Finance.ViewModel
         private void AddPurchase(object parameter)
         {
             DialogResult = true;
-         
+            if (CurrentPurchase.Name == null) CurrentPurchase.Name = "Неизвестно";
             dbContext.Purchase.Add(CurrentPurchase);
             dbContext.SaveChanges();
         }
