@@ -14,12 +14,10 @@ namespace Finance
             Category.Load();
             Necessity.Load();
         }
-
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Expenses> Expenses { get; set; }
         public virtual DbSet<Income> Income { get; set; }
         public virtual DbSet<Necessity> Necessity { get; set; }
-        public virtual DbSet<Plan> Plan { get; set; }
         public virtual DbSet<PlanExpenses> PlanExpenses { get; set; }
         public virtual DbSet<PlanIncome> PlanIncome { get; set; }
         public virtual DbSet<Purchase> Purchase { get; set; }
@@ -30,23 +28,8 @@ namespace Finance
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>()
-                .Property(e => e.Category_name)
+                .Property(e => e.Name)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Category>()
-                .HasMany(e => e.Expenses)
-                .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.CategoryId);
-
-            modelBuilder.Entity<Category>()
-                .HasMany(e => e.Plan)
-                .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.CategoryId);
-
-            modelBuilder.Entity<Category>()
-                .HasMany(e => e.PlanExpenses)
-                .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.CategoryId);
 
             modelBuilder.Entity<Expenses>()
                 .Property(e => e.Name)
@@ -80,11 +63,6 @@ namespace Finance
                 .HasForeignKey(e => e.Source);
 
             modelBuilder.Entity<Source_of_income>()
-                .HasMany(e => e.Plan)
-                .WithRequired(e => e.Source_of_income)
-                .HasForeignKey(e => e.SourceId);
-
-            modelBuilder.Entity<Source_of_income>()
                 .HasMany(e => e.PlanIncome)
                 .WithRequired(e => e.Source_of_income)
                 .HasForeignKey(e => e.SourceId);
@@ -105,12 +83,6 @@ namespace Finance
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Income)
-                .WithRequired(e => e.User)
-                .HasForeignKey(e => e.LoginId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Plan)
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.LoginId)
                 .WillCascadeOnDelete(false);

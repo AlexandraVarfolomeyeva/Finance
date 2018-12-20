@@ -67,19 +67,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\ICommandMultiDateConverter.cs" />
     <Compile Include="Model\Entities\Category.cs" />
+    <Compile Include="Model\Entities\Expenses.cs" />
+    <Compile Include="Helpers\ICommandMultiDateConverter.cs" />
+    <Compile Include="Model\Entities\Income.cs" />
     <Compile Include="Helpers\ConfirmDialog.cs" />
     <Compile Include="Model\EF\Model1.cs" />
-    <Compile Include="Model\Entities\Expenses.cs" />
     <Compile Include="Model\Entities\ExpensesPeriod.cs" />
-    <Compile Include="Model\Entities\Income.cs" />
     <Compile Include="Model\Entities\RelayCommand.cs" />
     <Compile Include="Model\Interfaces\IDbRepos.cs" />
     <Compile Include="Model\Interfaces\IRepository.cs" />
-    <Compile Include="Model\Entities\Model1.cs" />
     <Compile Include="Model\Entities\Necessity.cs" />
-    <Compile Include="Model\Entities\Plan.cs" />
     <Compile Include="Model\Entities\PlanExpenses.cs" />
     <Compile Include="Model\Entities\PlanIncome.cs" />
     <Compile Include="Model\Entities\Purchase.cs" />

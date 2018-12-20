@@ -171,7 +171,7 @@ namespace Finance.ViewModel
         public void DeletePlanExpenses(Object parameter)
         {
 
-            if (ConfirmDialog.Confirm($"Удалить план {SelectedPlanExpenses.Expenses} {SelectedPlanExpenses.Category.Category_name} ?"))
+            if (ConfirmDialog.Confirm($"Удалить план {SelectedPlanExpenses.Expenses} {SelectedPlanExpenses.Category.Name} ?"))
             {
                 PlanExpensesSource.Remove(SelectedPlanExpenses);
                 db.SaveChanges();

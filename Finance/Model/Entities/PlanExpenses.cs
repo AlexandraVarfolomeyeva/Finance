@@ -8,15 +8,15 @@ namespace Finance
 
     public partial class PlanExpenses
     {
-
         public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Expenses { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public double? Sum { get; set; }
+
+        public DateTime? Date { get; set; }
 
         public int CategoryId { get; set; }
 

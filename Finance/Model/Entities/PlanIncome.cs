@@ -15,9 +15,10 @@ namespace Finance
         [StringLength(50)]
         public string Income { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
-        
+        public double? Sum { get; set; }
+
+        public DateTime? Date { get; set; }
+
         public int SourceId { get; set; }
 
         public int UserId { get; set; }

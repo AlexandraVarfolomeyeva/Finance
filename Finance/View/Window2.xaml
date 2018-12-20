@@ -123,7 +123,7 @@
                                 <GridView x:Name="ExpensesGridView">
                                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Category_name}"/>
+                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Name}"/>
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
                                     <GridViewColumn Header="Важность" DisplayMemberBinding="{Binding Path=Necessity1.Necessity1}"/>
                                 </GridView>
@@ -215,8 +215,9 @@
                             <ListView.View>
                                 <GridView x:Name="PlanExpensesGridView">
                                     <GridViewColumn Header="Расходы" DisplayMemberBinding="{Binding Path = Expenses}"/>
+                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path = Sum}"/>
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path=Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Категория расходов" DisplayMemberBinding="{Binding Path=Category.Category_name}"/>
+                                    <GridViewColumn Header="Категория расходов" DisplayMemberBinding="{Binding Path=Category.Name}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -237,6 +238,7 @@
                             <ListView.View>
                                 <GridView x:Name="PlanIncomeGridView">
                                     <GridViewColumn Header="Доходы" DisplayMemberBinding="{Binding Path=Income}"/>
+                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
                                     <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
                                     <GridViewColumn Header="Статья доходов" DisplayMemberBinding="{Binding Path=Source_of_income.Name}"/>
                                 </GridView>
@@ -251,7 +253,8 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="PurchaseGridView">
-                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}" Width="auto"/>
+                                    <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Path=Sum}" Width="auto"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>

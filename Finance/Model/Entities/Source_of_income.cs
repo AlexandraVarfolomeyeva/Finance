@@ -12,7 +12,6 @@ namespace Finance
         public Source_of_income()
         {
             Income = new HashSet<Income>();
-            Plan = new HashSet<Plan>();
             PlanIncome = new HashSet<PlanIncome>();
         }
 
@@ -24,9 +23,6 @@ namespace Finance
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Income> Income { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Plan> Plan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlanIncome> PlanIncome { get; set; }

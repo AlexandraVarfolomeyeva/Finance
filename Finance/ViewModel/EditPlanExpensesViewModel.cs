@@ -39,7 +39,7 @@ namespace Finance.ViewModel
             private void AddPlanExpenses(object parameter)
             {
                 DialogResult = true;
-            //CurrentPlanExpenses.Id = 1;
+        
              
                 dbContext.PlanExpenses.Add(CurrentPlanExpenses);
                 dbContext.SaveChanges();

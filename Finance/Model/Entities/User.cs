@@ -14,11 +14,12 @@ namespace Finance
         {
             Expenses = new HashSet<Expenses>();
             Income = new HashSet<Income>();
-            Plan = new HashSet<Plan>();
             PlanExpenses = new HashSet<PlanExpenses>();
             PlanIncome = new HashSet<PlanIncome>();
             Purchase = new HashSet<Purchase>();
         }
+
+        public int Id { get; set; }
 
         [Required]
         [StringLength(30)]
@@ -28,16 +29,11 @@ namespace Finance
         [StringLength(20)]
         public string Password { get; set; }
 
-        public int Id { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenses> Expenses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Income> Income { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Plan> Plan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlanExpenses> PlanExpenses { get; set; }

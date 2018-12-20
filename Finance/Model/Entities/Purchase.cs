@@ -9,12 +9,13 @@ namespace Finance
     [Table("Purchase")]
     public partial class Purchase
     {
-        [Key]
-        public int Purchase_PK { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+
+        public double? Sum { get; set; }
 
         public int UserId { get; set; }
 

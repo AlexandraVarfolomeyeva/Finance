@@ -13,22 +13,17 @@ namespace Finance
         public Category()
         {
             Expenses = new HashSet<Expenses>();
-            Plan = new HashSet<Plan>();
             PlanExpenses = new HashSet<PlanExpenses>();
         }
 
-        [Key]
-        public int Category_PK { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string Category_name { get; set; }
+        public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenses> Expenses { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Plan> Plan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlanExpenses> PlanExpenses { get; set; }
