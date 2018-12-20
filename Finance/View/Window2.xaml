@@ -303,9 +303,9 @@
                                 <GridView x:Name="ExpensesPeriodGridView">
                                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Category_Name}"/>
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Важность" DisplayMemberBinding="{Binding Path=Necessity.Name}"/>
+                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path = Sum}"/>
+                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path=Category}"/>
+                                    <GridViewColumn Header="Важность" DisplayMemberBinding="{Binding Path=Necessity}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
