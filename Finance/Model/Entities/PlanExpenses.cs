@@ -8,7 +8,7 @@ namespace Finance
 
     public partial class PlanExpenses
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
         public int Id { get; set; }
 
         [Required]

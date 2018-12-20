@@ -89,7 +89,9 @@
     <Compile Include="ViewModel\BugetViewModel.cs" />
     <Compile Include="ViewModel\EditExpensesViewModel.cs" />
     <Compile Include="ViewModel\EditIncomesViewModel.cs" />
-    <Compile Include="ViewModel\EditPlanViewModel.cs" />
+    <Compile Include="ViewModel\EditPlanExpensesViewModel.cs" />
+    <Compile Include="ViewModel\EditPlanIncomeViewModel.cs" />
+    <Compile Include="ViewModel\EditPurchaseViewModel.cs" />
     <Compile Include="ViewModel\ExpensesViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="View\EditExpenses.xaml.cs">
@@ -98,8 +100,11 @@
     <Compile Include="View\EditIncome.xaml.cs">
       <DependentUpon>EditIncome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EditPlan.xaml.cs">
-      <DependentUpon>EditPlan.xaml</DependentUpon>
+    <Compile Include="View\EditPlanExpenses.xaml.cs">
+      <DependentUpon>EditPlanExpenses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditPlanIncome.xaml.cs">
+      <DependentUpon>EditPlanIncome.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditPurchase.xaml.cs">
       <DependentUpon>EditPurchase.xaml</DependentUpon>
@@ -121,7 +126,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EditPlan.xaml">
+    <Page Include="View\EditPlanExpenses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditPlanIncome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,18 +14,25 @@ namespace Finance.ViewModel
 {
     public class PlanViewModel : BaseViewModel
     {
-        public ObservableCollection<Plan> PlanSource { get; set; }
+        public ObservableCollection<PlanExpenses> PlanExpensesSource { get; set; }
         public ObservableCollection<PlanIncome> PlanIncomeSource { get; set; }
         public ObservableCollection<Purchase> PurchaseSource { get; set; }
-        public Plan SelectedPlan { get; set; }
+        public PlanExpenses SelectedPlanExpenses { get; set; }
         public PlanIncome SelectedPlanIncome { get; set; }
         public Purchase SelectedPurchase { get; set; }
 
-    RelayCommand addPlanCommand;
-        public RelayCommand AddPlanCommand
+    RelayCommand addPlanIncomeCommand;
+        public RelayCommand AddPlanIncomeCommand
         {
-            get { return addPlanCommand; }
-            set { addPlanCommand = value; }
+            get { return addPlanIncomeCommand; }
+            set { addPlanIncomeCommand = value; }
+        }
+
+        RelayCommand addPlanExpensesCommand;
+        public RelayCommand AddPlanExpensesCommand
+        {
+            get { return addPlanExpensesCommand; }
+            set { addPlanExpensesCommand = value; }
         }
 
         RelayCommand addPurchaseCommand;
@@ -37,19 +44,34 @@ namespace Finance.ViewModel
 
 
 
-        RelayCommand updatePlanCommand;
-        public RelayCommand UpdatePlanCommand
+        RelayCommand updatePlanIncomeCommand;
+        public RelayCommand UpdatePlanIncomeCommand
         {
-            get { return updatePlanCommand; }
-            set { updatePlanCommand = value; }
+            get { return updatePlanIncomeCommand; }
+            set { updatePlanIncomeCommand = value; }
         }
 
-        RelayCommand deletePlanCommand;
-        public RelayCommand DeletePlanCommand
+        RelayCommand updatePlanExpensesCommand;
+        public RelayCommand UpdatePlanExpensesCommand
         {
-            get { return deletePlanCommand; }
-            set { deletePlanCommand = value; }
+            get { return updatePlanExpensesCommand; }
+            set { updatePlanExpensesCommand = value; }
         }
+
+        RelayCommand deletePlanIncomeCommand;
+        public RelayCommand DeletePlanIncomeCommand
+        {
+            get { return deletePlanIncomeCommand; }
+            set { deletePlanIncomeCommand = value; }
+        }
+
+        RelayCommand deletePlanExpensesCommand;
+        public RelayCommand DeletePlanExpensesCommand
+        {
+            get { return deletePlanExpensesCommand; }
+            set { deletePlanExpensesCommand = value; }
+        }
+
 
         RelayCommand deletePurchaseCommand;
         public RelayCommand DeletePurchaseCommand
@@ -60,7 +82,6 @@ namespace Finance.ViewModel
 
         public PlanViewModel planContext;
         private FinancesDBContext db;
-        //DBReposSQL db2 = new DBReposSQL();
 
         //in repository
         public PlanViewModel(FinancesDBContext dbcontext)
@@ -68,9 +89,13 @@ namespace Finance.ViewModel
             db = dbcontext;
             LoadPlan();
             
-            AddPlanCommand = new RelayCommand(AddPlan);
-            UpdatePlanCommand = new RelayCommand(UpdatePlan, CanExecutePlan);
-            DeletePlanCommand = new RelayCommand(DeletePlan, CanExecutePlan);
+            AddPlanIncomeCommand = new RelayCommand(AddPlanIncome);
+            UpdatePlanIncomeCommand = new RelayCommand(UpdatePlanIncome, CanExecutePlanIncome);
+            DeletePlanIncomeCommand = new RelayCommand(DeletePlanIncome, CanExecutePlanIncome);
+
+            AddPlanExpensesCommand = new RelayCommand(AddPlanExpenses);
+            UpdatePlanExpensesCommand = new RelayCommand(UpdatePlanExpenses, CanExecutePlanExpenses);
+            DeletePlanExpensesCommand = new RelayCommand(DeletePlanExpenses, CanExecutePlanExpenses);
 
             LoadPurchase();
             AddPurchaseCommand = new RelayCommand(AddPurchase);
@@ -79,11 +104,11 @@ namespace Finance.ViewModel
 
         private void LoadPlan()
         {
-            db.Plan.Include(i => i.Category).Include(i => i.User).Include(i => i.Source_of_income).Load();
-            PlanSource = db.Plan.Local;
-
-            db.PlanIncome.Include(i => i.User).Load();
+            db.PlanIncome.Include(i => i.User).Include(i => i.Source_of_income).Load();
             PlanIncomeSource = db.PlanIncome.Local;
+
+            db.PlanExpenses.Include(i => i.User).Include(i => i.Category).Load();
+            PlanExpensesSource = db.PlanExpenses.Local;
         }
 
         private void LoadPurchase()
@@ -92,36 +117,63 @@ namespace Finance.ViewModel
             PurchaseSource = db.Purchase.Local;
         }
 
-        public void AddPlan(object parameter)
+        public void AddPlanIncome(object parameter)
         {
-            Window window = new View.EditPlan();
-            window.DataContext = new EditPlanViewModel(db, null);
+            Window window = new View.EditPlanIncome();
+            window.DataContext = new EditPlanIncomeViewModel(db, null);
             window.Title = "Добавление";
             window.ShowDialog();
         }
+
+        public void AddPlanExpenses(object parameter)
+        {
+            Window window = new View.EditPlanExpenses();
+            window.DataContext = new EditPlanExpensesViewModel(db, null);
+            window.Title = "Добавление";
+            window.ShowDialog();
+        }
+
 
         public void AddPurchase(object parameter)
         {
             Window window = new View.EditPurchase();
-            window.DataContext = new EditPlanViewModel(db, null);
+            window.DataContext = new EditPurchaseViewModel(db, null);
             window.Title = "Добавление";
             window.ShowDialog();
         }
 
-        public void UpdatePlan(object parameter)
+        public void UpdatePlanIncome(object parameter)
         {
-            Window window = new View.EditPurchase();
-            window.DataContext = new EditPlanViewModel(db, SelectedPlan);
+            Window window = new View.EditPlanIncome();
+            window.DataContext = new EditPlanIncomeViewModel(db, SelectedPlanIncome);
             window.Title = "Изменить";
             window.ShowDialog();
         }
 
-        public void DeletePlan(Object parameter)
+        public void UpdatePlanExpenses(object parameter)
+        {
+            Window window = new View.EditPlanExpenses();
+            window.DataContext = new EditPlanExpensesViewModel(db, SelectedPlanExpenses);
+            window.Title = "Изменить";
+            window.ShowDialog();
+        }
+
+        public void DeletePlanIncome(Object parameter)
         {
 
-            if (ConfirmDialog.Confirm($"Удалить план {SelectedPlan.Income} {SelectedPlan.Source_of_income} ?"))
+            if (ConfirmDialog.Confirm($"Удалить план {SelectedPlanIncome.Income} {SelectedPlanIncome.Source_of_income.Name} ?"))
             {
-                PlanSource.Remove(SelectedPlan);
+                PlanIncomeSource.Remove(SelectedPlanIncome);
+                db.SaveChanges();
+            }
+        }
+
+        public void DeletePlanExpenses(Object parameter)
+        {
+
+            if (ConfirmDialog.Confirm($"Удалить план {SelectedPlanExpenses.Expenses} {SelectedPlanExpenses.Category.Category_name} ?"))
+            {
+                PlanExpensesSource.Remove(SelectedPlanExpenses);
                 db.SaveChanges();
             }
         }
@@ -137,10 +189,14 @@ namespace Finance.ViewModel
         }
 
 
-        public bool CanExecutePlan(object parameter)
+        public bool CanExecutePlanIncome(object parameter)
         {
-            return SelectedPlan != null;
+            return SelectedPlanIncome != null;
+        }
 
+        public bool CanExecutePlanExpenses(object parameter)
+        {
+            return SelectedPlanExpenses != null;
         }
 
         public bool CanExecutePurchase(object parameter)

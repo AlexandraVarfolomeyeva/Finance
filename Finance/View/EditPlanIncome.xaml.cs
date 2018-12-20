@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace Finance.View
 {
     /// <summary>
-    /// Логика взаимодействия для EditPlan.xaml
+    /// Логика взаимодействия для EditPlanIncome.xaml
     /// </summary>
-    public partial class EditPlan : Window
+    public partial class EditPlanIncome : Window
     {
-        public EditPlan()
+        public EditPlanIncome()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

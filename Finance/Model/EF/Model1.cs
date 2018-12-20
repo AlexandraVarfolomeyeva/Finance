@@ -46,8 +46,7 @@ namespace Finance
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.PlanExpenses)
                 .WithRequired(e => e.Category)
-                .HasForeignKey(e => e.CategoryId)
-                .WillCascadeOnDelete(false);
+                .HasForeignKey(e => e.CategoryId);
 
             modelBuilder.Entity<Expenses>()
                 .Property(e => e.Name)
@@ -88,8 +87,7 @@ namespace Finance
             modelBuilder.Entity<Source_of_income>()
                 .HasMany(e => e.PlanIncome)
                 .WithRequired(e => e.Source_of_income)
-                .HasForeignKey(e => e.SourceId)
-                .WillCascadeOnDelete(false);
+                .HasForeignKey(e => e.SourceId);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Login)
@@ -115,16 +113,6 @@ namespace Finance
                 .HasMany(e => e.Plan)
                 .WithRequired(e => e.User)
                 .HasForeignKey(e => e.LoginId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.PlanExpenses)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.PlanIncome)
-                .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()

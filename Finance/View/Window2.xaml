@@ -196,7 +196,7 @@
                             <RowDefinition Height="*"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=PlanSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlan, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path=PlanExpensesSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlanExpenses, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="ToolTipService.ToolTip">
@@ -210,18 +210,15 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="PlanGridView">
-                                    <GridViewColumn Header="Доходы" DisplayMemberBinding="{Binding Path=Income}"/>
+                                <GridView x:Name="PlanExpensesGridView">
                                     <GridViewColumn Header="Расходы" DisplayMemberBinding="{Binding Path = Expenses}"/>
-                                    <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding Path = Date_From, StringFormat=d}"/>
-                                    <GridViewColumn Header="Дата конца" DisplayMemberBinding="{Binding Path=Date_To, StringFormat=d}"/>
-                                    <GridViewColumn Header="Категория расходов" DisplayMemberBinding="{Binding Path=Category.Name}"/>
-                                    <GridViewColumn Header="Статья доходов" DisplayMemberBinding="{Binding Path=Source_of_income.Name}"/>
+                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path=Date, StringFormat=d}"/>
+                                    <GridViewColumn Header="Категория расходов" DisplayMemberBinding="{Binding Path=Category.Category_name}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
 
-                        <ListView Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path=PlanIncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlan, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=PlanIncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlanIncome, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="ToolTipService.ToolTip">
@@ -262,20 +259,25 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="5" Grid.Column="0">
-                            <Button Content="ADD" Command="{Binding Path=AddPlanCommand}"/>
-                            <Button Content="UPD" Command="{Binding Path=UpdatePlanCommand}"/>
-                            <Button Content="DEL" Command="{Binding Path=DeletePlanCommand}"/>
+                            <Button Content="ADD" Command="{Binding Path=AddPlanIncomeCommand}"/>
+                            <Button Content="UPD" Command="{Binding Path=UpdatePlanIncomeCommand}"/>
+                            <Button Content="DEL" Command="{Binding Path=DeletePlanIncomeCommand}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="120,5,5,5" Grid.Column="0">
+                            <Button Content="ADD" Command="{Binding Path=AddPlanExpensesCommand}"/>
+                            <Button Content="UPD" Command="{Binding Path=UpdatePlanExpensesCommand}"/>
+                            <Button Content="DEL" Command="{Binding Path=DeletePlanExpensesCommand}"/>
                         </StackPanel>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Бюджет" x:Name="BugetTab" DataContext="{Binding Path=BugetTabItemVM}">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
-
+                            <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <ListView Grid.Row="1" ItemsSource="{Binding Path = BugetSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedBuget, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView Grid.Row="0" ItemsSource="{Binding Path = BugetSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedBuget, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="ToolTipService.ToolTip">

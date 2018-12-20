@@ -9,7 +9,6 @@ namespace Finance
     [Table("PlanIncome")]
     public partial class PlanIncome
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         [Required]

@@ -15,16 +15,16 @@ using System.Windows.Shapes;
 namespace Finance.View
 {
     /// <summary>
-    /// Логика взаимодействия для EditPurchase.xaml
+    /// Логика взаимодействия для EditPlanExpenses.xaml
     /// </summary>
-    public partial class EditPurchase : Window
+    public partial class EditPlanExpenses : Window
     {
-        public EditPurchase()
+        public EditPlanExpenses()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button1_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

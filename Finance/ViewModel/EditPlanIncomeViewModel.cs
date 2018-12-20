@@ -7,49 +7,50 @@ using System.Threading.Tasks;
 
 namespace Finance.ViewModel
 {
-    class EditPlanViewModel : BaseViewModel
+    class EditPlanIncomeViewModel : BaseViewModel
     {
         bool? dr ;
         public bool? DialogResult { get { return dr; } set { dr = value; } }
 
     FinancesDBContext dbContext;
-    public Plan CurrentPlan { get; set; }
+    public PlanIncome CurrentPlanIncome { get; set; }
     public ObservableCollection<Source_of_income> PlanSourceList { get; set; }
     public RelayCommand ApplyChangesCommand { get; set; }
 
-    public EditPlanViewModel(FinancesDBContext dbContext, Plan plan)
+    public EditPlanIncomeViewModel(FinancesDBContext dbContext, PlanIncome plan)
     {
         this.dbContext = dbContext;
         PlanSourceList = dbContext.Source_of_income.Local;
         if (plan != null)
         {
-            CurrentPlan = plan;
-            ApplyChangesCommand = new RelayCommand(UpdatePlan, CanExe);
+            CurrentPlanIncome = plan;
+            ApplyChangesCommand = new RelayCommand(UpdatePlanIncome, CanExe);
         }
         else
         {
-            CurrentPlan = new Plan();
+            CurrentPlanIncome = new PlanIncome();
            
-            ApplyChangesCommand = new RelayCommand(AddPlan, CanExe);
+            ApplyChangesCommand = new RelayCommand(AddPlanIncome, CanExe);
         }
-        CurrentPlan.User = dbContext.User.FirstOrDefault();
+        CurrentPlanIncome.User = dbContext.User.FirstOrDefault(); 
     }
-
-    private void AddPlan(object parameter)
+        
+    private void AddPlanIncome(object parameter)
     {
         DialogResult = true;
-        dbContext.Plan.Add(CurrentPlan);
+        CurrentPlanIncome.Id = 5;
+        dbContext.PlanIncome.Add(CurrentPlanIncome);
         dbContext.SaveChanges();
     }
 
-    private void UpdatePlan(object parameter)
+    private void UpdatePlanIncome(object parameter)
     {
         dbContext.SaveChanges();
     }
 
     public bool CanExe(object parameter)
     {
-        return !(CurrentPlan == null) && CurrentPlan.Income > 0 && CurrentPlan.Source_of_income != null;
+        return !(CurrentPlanIncome == null) && CurrentPlanIncome.Income != "" && CurrentPlanIncome.Source_of_income != null;
     }
 }
 }

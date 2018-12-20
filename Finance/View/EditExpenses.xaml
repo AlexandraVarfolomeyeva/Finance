@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Finance.View"
         mc:Ignorable="d"
-        Title="EditExpenses" Height="230" Width="300" Foreground="Wheat" WindowStartupLocation="CenterScreen"
+        Title="Редактировать расходы" Height="230" Width="300" Foreground="Wheat" WindowStartupLocation="CenterScreen"
         xmlns:xc="clr-namespace:Finance.Helpers"
         xc:DialogCloser.DialogResult="{Binding DialogResult, UpdateSourceTrigger=Explicit}" x:Name="ddd">
     <Window.Resources>
