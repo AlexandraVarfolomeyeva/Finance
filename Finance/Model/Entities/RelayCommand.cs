@@ -33,5 +33,10 @@ namespace Finance
         {
             this.execute(parameter);
         }
+        public event EventHandler CanExecuteChanged1;
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged1(this, EventArgs.Empty);
+        }
     }
 }

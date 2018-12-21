@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Finance.View"
         mc:Ignorable="d"
          xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Редактировать планы по доходам" Height="190" Width="300" Foreground="Wheat" WindowStartupLocation="CenterScreen"
+        Title="Редактировать планы по доходам" Height="190" Width="300"  FontSize="14" FontFamily="Georgia" 
+        Foreground="#191970" WindowStartupLocation="CenterScreen"
         xmlns:xc="clr-namespace:Finance.Helpers"
         xc:DialogCloser.DialogResult="{Binding DialogResult, UpdateSourceTrigger=Explicit}" x:Name="ddd">
     
@@ -24,7 +25,7 @@
             <Setter Property="Foreground" Value="DarkBlue"/>
         </Style>
     </Window.Resources>
-    <Grid Background="SteelBlue">
+    <Grid Background="#FFFAFA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

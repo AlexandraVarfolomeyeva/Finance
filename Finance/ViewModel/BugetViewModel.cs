@@ -3,7 +3,9 @@ using Finance.Helpers;
 using Finance.Model.Entities;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows;
 
 namespace Finance.ViewModel
@@ -30,6 +32,7 @@ namespace Finance.ViewModel
         {
             db = dbcontext;
             SPCommand = new RelayCommand(ExecuteSP);
+            ExpensesPeriodSource = new ObservableCollection<ExpensesPeriod>();
         }
 
         private void ExecuteSP(object parameter)
@@ -46,13 +49,12 @@ namespace Finance.ViewModel
                 db.Category.Load();
                 System.Data.SqlClient.SqlParameter param1 = new System.Data.SqlClient.SqlParameter("@beginning", DateFrom);
                 System.Data.SqlClient.SqlParameter param2 = new System.Data.SqlClient.SqlParameter("@ending", DateTo);
-                var result = db.Database.SqlQuery<ExpensesPeriod>("ExpensesPeriod @beginning, @ending", new object[] { param1, param2 });
+                var result = db.Database.SqlQuery<ExpensesPeriod>("ExpensesPeriod @beginning, @ending", new object[] { param1, param2 }).ToList();
                 foreach (ExpensesPeriod p in result)
                 {
                     ExpensesPeriodSource.Add(p);
                 }
-
-    }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Обнаружена ошибка: " + ex);

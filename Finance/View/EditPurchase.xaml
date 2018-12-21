@@ -5,26 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Finance.View"
         mc:Ignorable="d"
-        Title="EditPurchase" Height="130" Width="300" Foreground="Wheat"
+        Title="EditPurchase" Height="130" Width="300"
         WindowStartupLocation="CenterScreen"
-        xmlns:xc="clr-namespace:Finance.Helpers"
+        xmlns:xc="clr-namespace:Finance.Helpers"  FontSize="14" FontFamily="Georgia" 
+        Foreground="#191970"
         xc:DialogCloser.DialogResult="{Binding DialogResult, UpdateSourceTrigger=Explicit}" x:Name="ddd">
     <Window.Resources>
         <Style x:Key="StyleForButton" TargetType="Button">
-            <Setter Property="Background" Value="WhiteSmoke"/>
-            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Background" Value="#F8F8FF"/>
         </Style>
         <Style x:Key="StyleForTextBoxes" TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Background" Value="#F8F8FF"/>
         </Style>
         <Style x:Key="StyleForComboBoxes" TargetType="ComboBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Background" Value="#F8F8FF"/>
         </Style>
     </Window.Resources>
 
-    <Grid Background="SteelBlue">
+    <Grid Background="#FFFAFA">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
