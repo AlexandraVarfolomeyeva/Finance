@@ -45,6 +45,13 @@ namespace Finance.ViewModel
         {
             try
             {
+                ExpensesPeriodSource.Clear();
+                ExpensesSumSource.Clear();
+                IncomePeriodSource.Clear();
+                IncomeSumSource.Clear();
+
+
+
                 var stringList = parameter as string[];
                 TotalExpenses = 0;
                 TotalIncome = 0;
@@ -88,6 +95,7 @@ namespace Finance.ViewModel
                     ExpensesSumSource.Add(p);
                 }
                 Profit = TotalIncome - TotalExpenses;
+            
             }
             catch (Exception ex)
             {
