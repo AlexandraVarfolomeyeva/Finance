@@ -71,10 +71,13 @@
     <Compile Include="Model\Entities\Category.cs" />
     <Compile Include="Model\Entities\Expenses.cs" />
     <Compile Include="Helpers\ICommandMultiDateConverter.cs" />
+    <Compile Include="Model\Entities\ExpensesSum.cs" />
     <Compile Include="Model\Entities\Income.cs" />
     <Compile Include="Helpers\ConfirmDialog.cs" />
     <Compile Include="Model\EF\Model1.cs" />
     <Compile Include="Model\Entities\ExpensesPeriod.cs" />
+    <Compile Include="Model\Entities\IncomePeriod.cs" />
+    <Compile Include="Model\Entities\IncomeSum.cs" />
     <Compile Include="Model\Entities\RelayCommand.cs" />
     <Compile Include="Model\Entities\WindowManager.cs" />
     <Compile Include="Model\Interfaces\IDbRepos.cs" />

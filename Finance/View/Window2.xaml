@@ -312,20 +312,14 @@
                             <!--SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}"-->
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="ToolTipService.ToolTip">
-                                        <Setter.Value>
-                                            <ToolTip Background="SkyBlue">
-                                                <TextBlock Text="{Binding Path=Sum}"/>
-                                            </ToolTip>
-                                        </Setter.Value>
-                                    </Setter>
+                                
                                     <Setter Property="Background" Value="LightBlue"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="ExpensesSumGridView">
                                 <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Category_Name}"/>
+                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -351,7 +345,7 @@
                                 <GridView x:Name="IncomePeriodGridView">
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source_of_income.Name}"/>
+                                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -360,24 +354,18 @@
                             <!--SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}"-->
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="ToolTipService.ToolTip">
-                                        <Setter.Value>
-                                            <ToolTip Background="SkyBlue">
-                                                <TextBlock Text="{Binding Path=Sum}"/>
-                                            </ToolTip>
-                                        </Setter.Value>
-                                    </Setter>
+                                  
                                     <Setter Property="Background" Value="LightBlue"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="IncomeSumGridView">
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source_of_income.Name}"/>
+                                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        
+
                         <ListView Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path = TotalSource, UpdateSourceTrigger=PropertyChanged}">
                             <!--SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}"-->
                             <ListView.ItemContainerStyle>
@@ -387,8 +375,8 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="TotalGridView">
-                                    <GridViewColumn Header="Доходы" DisplayMemberBinding="{Binding Path=Income}"/>
-                                    <GridViewColumn Header="Расходы" DisplayMemberBinding="{Binding Path=Expenses}"/>
+                                    <GridViewColumn Header="Доходы" DisplayMemberBinding="{Binding Path=TotalIncome}"/>
+                                    <GridViewColumn Header="Расходы" DisplayMemberBinding="{Binding Path=TotalExpenses}"/>
                                     <GridViewColumn Header="Прибыль" DisplayMemberBinding="{Binding Path=Profit}"/>
                                 </GridView>
                             </ListView.View>
