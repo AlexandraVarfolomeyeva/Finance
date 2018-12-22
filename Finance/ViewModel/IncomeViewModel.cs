@@ -2,8 +2,10 @@
 //using DAL.Repository;
 using Finance.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows;
 
 namespace Finance.ViewModel
@@ -11,6 +13,7 @@ namespace Finance.ViewModel
     public class IncomeViewModel : BaseViewModel
     {
         public ObservableCollection<Income> IncomeSource { get; set; }
+        //public List<Income> IncomeSource { get; set; }
         public Income SelectedIncome { get; set; }
 
         RelayCommand addIncomeCommand;
@@ -37,11 +40,12 @@ namespace Finance.ViewModel
 
         private FinancesDBContext db;
         //DBReposSQL db2 = new DBReposSQL();
-
+        int Id;
         //in repository
         public IncomeViewModel(FinancesDBContext dbcontext, int Id)
         {
             db = dbcontext;
+            this.Id = Id;
             LoadIncomes();
             AddIncomeCommand = new RelayCommand(AddIncome);
             UpdateIncomeCommand = new RelayCommand(UpdateIncome, CanExecute);
@@ -49,22 +53,24 @@ namespace Finance.ViewModel
         }
 
         private void LoadIncomes()
-        {
+        { 
             db.Income.Include(i => i.Source_of_income).Include(i => i.User).Load();
-            IncomeSource = db.Income.Local;
+            IncomeSource = new ObservableCollection<Income>(db.Income.Where(i => i.User.Id == Id).ToList());
+
         }
 
         public void AddIncome(object parameter)
         {
             Window window = new View.EditIncome();
-            window.DataContext = new EditIncomesViewModel(db, null);
+            window.DataContext = new EditIncomesViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
         }
+
         public void UpdateIncome(object parameter)
         {
             Window window = new View.EditIncome();
-            window.DataContext = new EditIncomesViewModel(db, SelectedIncome);
+            window.DataContext = new EditIncomesViewModel(db, SelectedIncome, Id);
             window.Title = "Изменить";
             window.ShowDialog();
         }

@@ -3,6 +3,7 @@ using Finance.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace Finance.ViewModel
         public ObservableCollection<Source_of_income> IncomeSourceList { get; set; }
         public RelayCommand ApplyChangesCommand { get; set; }
          
-        public EditIncomesViewModel(FinancesDBContext dbContext, Income income)
+        public EditIncomesViewModel(FinancesDBContext dbContext, Income income, int Id)
         {
             this.dbContext = dbContext;
             IncomeSourceList = dbContext.Source_of_income.Local;
@@ -34,7 +35,16 @@ namespace Finance.ViewModel
                 CurrentIncome.Date = DateTime.Now;
                 ApplyChangesCommand = new RelayCommand(AddIncome, CanExe);
             }
-            CurrentIncome.User = dbContext.User.FirstOrDefault();
+            dbContext.User.Load();
+            //User t = new User();
+            //ObservableCollection<User> Users;
+            //Users = dbContext.User.Local;
+            //foreach (User p in Users)
+            //{
+            //    if (p.Id == Id) t = p;
+            //}
+            //CurrentIncome.User = t;
+            CurrentIncome.LoginId = Id;
         }
 
         private void AddIncome(object parameter)
