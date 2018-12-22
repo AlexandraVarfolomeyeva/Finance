@@ -44,7 +44,7 @@ namespace Finance.ViewModel
         //DBReposSQL db2 = new DBReposSQL();
 
         //in repository
-        public ExpensesViewModel(FinancesDBContext dbcontext)
+        public ExpensesViewModel(FinancesDBContext dbcontext, int Id)
         {
             db = dbcontext;
             LoadExpenses();

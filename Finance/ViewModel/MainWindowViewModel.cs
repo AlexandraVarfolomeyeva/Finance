@@ -22,13 +22,14 @@ namespace Finance.ViewModel
         public BudgetViewModel BugetTabItemVM { set; get; }
         public PlanViewModel PlanTabItemVM { set; get; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(FinancesDBContext db, int Id)
         {
-            db = new FinancesDBContext();
-            IncomesTabItemVM = new IncomeViewModel(db);
-            ExpensesTabItemVM = new ExpensesViewModel(db);
-            BugetTabItemVM = new BudgetViewModel(db);
-            PlanTabItemVM = new PlanViewModel(db);
+            //db = new FinancesDBContext();
+            this.db = db;
+            IncomesTabItemVM = new IncomeViewModel(db, Id);
+            ExpensesTabItemVM = new ExpensesViewModel(db, Id);
+            BugetTabItemVM = new BudgetViewModel(db,Id);
+            PlanTabItemVM = new PlanViewModel(db, Id);
         }
         public event PropertyChangedEventHandler PropertyChanged;
 

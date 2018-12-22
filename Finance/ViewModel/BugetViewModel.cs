@@ -28,12 +28,13 @@ namespace Finance.ViewModel
             get { return spCommand; }
             set { spCommand = value; }
         }
-
+        int Id;
         //public RelayCommand SPCommand { get; set; }
         //in repository
-        public BudgetViewModel(FinancesDBContext dbcontext)
+        public BudgetViewModel(FinancesDBContext dbcontext, int Id)
         {
             db = dbcontext;
+            this.Id = Id;
             SPCommand = new RelayCommand(ExecuteSP);
             ExpensesPeriodSource = new ObservableCollection<ExpensesPeriod>();
             IncomePeriodSource = new ObservableCollection<IncomePeriod>();
@@ -59,8 +60,8 @@ namespace Finance.ViewModel
                 DateTime DateFrom = DateTime.Parse(stringList[0]);
                 DateTime DateTo = DateTime.Parse(stringList[1]);
                 // Query the data.
-                db.Income.Include(i => i.Source_of_income).Include(i => i.User).Load();
-                db.Expenses.Include(i => i.Category).Include(i => i.User).Load();
+                db.Income.Include(i => i.Source_of_income).Include(i => i.User.Id == Id).Load();
+                db.Expenses.Include(i => i.Category).Include(i => i.User.Id == Id).Load();
                 db.Category.Load();
                 db.Source_of_income.Load();
                 System.Data.SqlClient.SqlParameter param1 = new System.Data.SqlClient.SqlParameter("@beginning", DateFrom);

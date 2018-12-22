@@ -22,9 +22,9 @@ namespace Finance
     {
         public MainWindowViewModel MainVM { set; get; }
 
-        public Window2()
+        public Window2(int Id, FinancesDBContext db)
         {
-            MainVM = new MainWindowViewModel();
+            MainVM = new MainWindowViewModel(db, Id);
             DataContext = MainVM;
             InitializeComponent();
         }

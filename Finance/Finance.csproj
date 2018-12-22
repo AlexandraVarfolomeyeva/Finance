@@ -79,7 +79,6 @@
     <Compile Include="Model\Entities\IncomePeriod.cs" />
     <Compile Include="Model\Entities\IncomeSum.cs" />
     <Compile Include="Model\Entities\RelayCommand.cs" />
-    <Compile Include="Model\Entities\WindowManager.cs" />
     <Compile Include="Model\Interfaces\IDbRepos.cs" />
     <Compile Include="Model\Interfaces\IRepository.cs" />
     <Compile Include="Model\Entities\Necessity.cs" />
@@ -89,7 +88,6 @@
     <Compile Include="Model\Entities\Source_of_income.cs" />
     <Compile Include="Model\Entities\sysdiagrams.cs" />
     <Compile Include="Model\Entities\User.cs" />
-    <Compile Include="Model\Interfaces\IRequireViewIdentification.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
     <Compile Include="ViewModel\BugetViewModel.cs" />

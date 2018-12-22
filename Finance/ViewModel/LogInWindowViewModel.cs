@@ -1,97 +1,114 @@
-﻿using Finance.Model.Entities;
-using Finance.Model.Interfaces;
+﻿using Finance.Helpers;
 using Finance.ViewModel;
-using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Finance
 {
-   public class LogInWindowViewModel : BaseViewModel, IRequireViewIdentification
+    public class LogInWindowViewModel : BaseViewModel, INotifyPropertyChanged
     {
         private readonly RelayCommand _loginCommand;
         private readonly RelayCommand _registrationCommand;
         private string _username;
-        private string _status;
-
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; NotifyPropertyChanged("Username"); }
+        }
+        private int tries = 0 ;
+        private bool LogIned = false;
+        public ObservableCollection<User> UserSource { get; set; }
+        FinancesDBContext db;
         public LogInWindowViewModel()
         {
-            _viewId = Guid.NewGuid();
+            db = new FinancesDBContext();
             _loginCommand = new RelayCommand(Login, i => true);
             _registrationCommand = new RelayCommand(Registration);
         }
 
         public RelayCommand LoginCommand { get { return _loginCommand; } }
 
-        public RelayCommand LogoutCommand { get { return _registrationCommand; } }
+        public RelayCommand RegistrationCommand { get { return _registrationCommand; } }
 
-        public string Username
-        {
-            get { return _username; }
-            set { _username = value; NotifyPropertyChanged("Username"); }
-        }
-        public string Status
-        {
-            get { return _status; }
-            set { _status = value; NotifyPropertyChanged("Status"); }
-        }
+
 
         private void Login(object parameter)
         {
+
+            //var stringList = parameter as Users;
+            //clearTextPassword = stringList.pass.Password;
+            //Username = stringList.login;
+
+            db.User.Load();
+            UserSource = db.User.Local;
             PasswordBox passwordBox = parameter as PasswordBox;
             string clearTextPassword = passwordBox.Password;
-            try
+            //{
+            if ((!LogIned && tries <= 3))
             {
-                //User user = _authenticationService.AuthenticateUser(Username, clearTextPassword);
-
-                //Update UI
-                NotifyPropertyChanged("AuthenticatedUser");
-                NotifyPropertyChanged("IsAuthenticated");
-                _loginCommand.RaiseCanExecuteChanged();
-                _registrationCommand.RaiseCanExecuteChanged();
-                //Username = string.Empty; //reset
-                //passwordBox.Password = string.Empty; //reset
-                //Status = string.Empty;
-                _IsAuthenticated = true;
-                WindowManager.CloseWindow(ViewID);
-
+                foreach (User p in UserSource)
+                {
+                    if ((p.Login == Username) && (p.Password == clearTextPassword))
+                    {
+                        LogIned = true;
+                        MessageBox.Show("Добро пожаловать, " + p.Login + "!");
+                        Window2 h = new Window2(p.Id, db);
+                        h.Show();
+                    }
+                }
+                if (!LogIned)
+                {
+                    tries++;
+                    MessageBox.Show("Логин и пароль были введены неправильно!");
+                }
             }
-            catch (UnauthorizedAccessException)
+            //} while (!LogIned && tries <=3);
+            if (LogIned == false && tries == 3)
             {
-                Status = "Login failed! Please provide some valid credentials.";
+                MessageBox.Show("Вы израсходовали все попытки!");
+                System.Windows.Application.Current.Shutdown();
             }
-            catch (Exception ex)
-            {
-                Status = string.Format("ERROR: {0}", ex.Message);
-            }
-        }
 
-        private bool CanLogin(object parameter)
-        {
-            return !IsAuthenticated;
-        }
-
-        private bool _IsAuthenticated = false;
-        public bool IsAuthenticated
-        {
-            get { return _IsAuthenticated; }
-        }
-        private Guid _viewId;
-        public Guid ViewID
-        {
-            get { return _viewId; }
         }
 
         private void Registration(object parameter)
         {
-            NotifyPropertyChanged("AuthenticatedUser");
-            NotifyPropertyChanged("IsAuthenticated");
-            _loginCommand.RaiseCanExecuteChanged();
-            _registrationCommand.RaiseCanExecuteChanged();
+            bool exists = false;
+            PasswordBox passwordBox = parameter as PasswordBox;
+            string clearTextPassword = passwordBox.Password;
+            db.User.Load();
+            UserSource = db.User.Local;
+
+
+            foreach (User p in UserSource)
+            {
+                if (p.Login == Username) 
+                {
+                    exists = true;
+                }
+            }
+            if (exists)
+            {
+                MessageBox.Show("Выбранный вами логин уже существует!");
+            }
+            else
+            {
+                User newUser = new User();
+                newUser.Login = Username;
+                newUser.Password = clearTextPassword;
+                db.User.Add(newUser);
+                db.SaveChanges();
+                db.User.Load();
+                UserSource = db.User.Local;
+                MessageBox.Show("Добро пожаловать, " + UserSource[UserSource.IndexOf(newUser)].Login + "!");
+                Window2 h = new Window2(UserSource[UserSource.IndexOf(newUser)].Id, db);
+                h.Show();
+
+            }
+               
         }
 
 
@@ -107,3 +124,4 @@ namespace Finance
 
     }
 }
+

@@ -39,7 +39,7 @@ namespace Finance.ViewModel
         //DBReposSQL db2 = new DBReposSQL();
 
         //in repository
-        public IncomeViewModel(FinancesDBContext dbcontext)
+        public IncomeViewModel(FinancesDBContext dbcontext, int Id)
         {
             db = dbcontext;
             LoadIncomes();

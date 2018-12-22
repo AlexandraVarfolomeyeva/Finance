@@ -82,11 +82,12 @@ namespace Finance.ViewModel
 
         public PlanViewModel planContext;
         private FinancesDBContext db;
-
+        int Id;
         //in repository
-        public PlanViewModel(FinancesDBContext dbcontext)
+        public PlanViewModel(FinancesDBContext dbcontext, int Id)
         {
             db = dbcontext;
+            this.Id = Id;
             LoadPlan();
             
             AddPlanIncomeCommand = new RelayCommand(AddPlanIncome);
