@@ -1,5 +1,6 @@
 ﻿using Finance.Helpers;
 using Finance.ViewModel;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -8,11 +9,17 @@ using System.Windows.Controls;
 
 namespace Finance
 {
-    public class LogInWindowViewModel : BaseViewModel, INotifyPropertyChanged
+    public class LogInWindowViewModel : BaseViewModel, INotifyPropertyChanged, IRequireViewIdentification
     {
         private readonly RelayCommand _loginCommand;
         private readonly RelayCommand _registrationCommand;
         private string _username;
+        private Guid _viewId;
+        public Guid ViewID
+        {
+            get { return _viewId; }
+        }
+
         public string Username
         {
             get { return _username; }
@@ -56,6 +63,7 @@ namespace Finance
                         LogIned = true;
                         MessageBox.Show("Добро пожаловать, " + p.Login + "!");
                         Window2 h = new Window2(p.Id, db);
+                        WindowManager.CloseWindow(ViewID);
                         h.Show();
                     }
                 }
@@ -105,6 +113,7 @@ namespace Finance
                 UserSource = db.User.Local;
                 MessageBox.Show("Добро пожаловать, " + UserSource[UserSource.IndexOf(newUser)].Login + "!");
                 Window2 h = new Window2(UserSource[UserSource.IndexOf(newUser)].Id, db);
+                WindowManager.CloseWindow(ViewID);
                 h.Show();
 
             }
