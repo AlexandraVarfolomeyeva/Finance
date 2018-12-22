@@ -16,7 +16,7 @@ namespace Finance.ViewModel
   
         public RelayCommand ApplyChangesCommand { get; set; }
 
-        public EditPurchaseViewModel(FinancesDBContext dbContext, Purchase purchase)
+        public EditPurchaseViewModel(FinancesDBContext dbContext, Purchase purchase, int Id)
         {
             this.dbContext = dbContext;
             if (purchase != null)
@@ -30,7 +30,8 @@ namespace Finance.ViewModel
 
                 ApplyChangesCommand = new RelayCommand(AddPurchase, CanExe);
             }
-            CurrentPurchase.User = dbContext.User.FirstOrDefault();
+            //CurrentPurchase.User = dbContext.User.FirstOrDefault();
+            CurrentPurchase.UserId = Id;
         }
 
         private void AddPurchase(object parameter)

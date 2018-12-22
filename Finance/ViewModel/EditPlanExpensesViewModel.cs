@@ -18,7 +18,7 @@ namespace Finance.ViewModel
             public ObservableCollection<Category> PlanCategoryList { get; set; }
             public RelayCommand ApplyChangesCommand { get; set; }
 
-            public EditPlanExpensesViewModel(FinancesDBContext dbContext, PlanExpenses plan)
+            public EditPlanExpensesViewModel(FinancesDBContext dbContext, PlanExpenses plan, int Id)
             {
                 this.dbContext = dbContext;
                 PlanCategoryList = dbContext.Category.Local;
@@ -33,7 +33,8 @@ namespace Finance.ViewModel
 
                     ApplyChangesCommand = new RelayCommand(AddPlanExpenses, CanExe);
                 }
-              CurrentPlanExpenses.User = dbContext.User.FirstOrDefault();
+            //CurrentPlanExpenses.User = dbContext.User.FirstOrDefault();
+            CurrentPlanExpenses.UserId = Id;
             }
 
             private void AddPlanExpenses(object parameter)

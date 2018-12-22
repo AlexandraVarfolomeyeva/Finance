@@ -17,7 +17,7 @@ namespace Finance.ViewModel
     public ObservableCollection<Source_of_income> PlanSourceList { get; set; }
     public RelayCommand ApplyChangesCommand { get; set; }
 
-    public EditPlanIncomeViewModel(FinancesDBContext dbContext, PlanIncome plan)
+    public EditPlanIncomeViewModel(FinancesDBContext dbContext, PlanIncome plan, int Id)
     {
         this.dbContext = dbContext;
         PlanSourceList = dbContext.Source_of_income.Local;
@@ -32,7 +32,8 @@ namespace Finance.ViewModel
            
             ApplyChangesCommand = new RelayCommand(AddPlanIncome, CanExe);
         }
-        CurrentPlanIncome.User = dbContext.User.FirstOrDefault(); 
+        //CurrentPlanIncome.User = dbContext.User.FirstOrDefault(); 
+        CurrentPlanIncome.UserId = Id;
     }
         
     private void AddPlanIncome(object parameter)

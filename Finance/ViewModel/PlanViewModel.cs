@@ -106,22 +106,23 @@ namespace Finance.ViewModel
         private void LoadPlan()
         {
             db.PlanIncome.Include(i => i.User).Include(i => i.Source_of_income).Load();
-            PlanIncomeSource = db.PlanIncome.Local;
+            
+            PlanIncomeSource = new ObservableCollection<PlanIncome>(db.PlanIncome.Where(i => i.User.Id == Id).ToList());
 
             db.PlanExpenses.Include(i => i.User).Include(i => i.Category).Load();
-            PlanExpensesSource = db.PlanExpenses.Local;
+            PlanExpensesSource = new ObservableCollection<PlanExpenses>(db.PlanExpenses.Where(i => i.User.Id == Id).ToList());
         }
 
         private void LoadPurchase()
         {
             db.Purchase.Include(i => i.User).Load();
-            PurchaseSource = db.Purchase.Local;
+            PurchaseSource = new ObservableCollection<Purchase>(db.Purchase.Where(i => i.User.Id == Id).ToList());
         }
 
         public void AddPlanIncome(object parameter)
         {
             Window window = new View.EditPlanIncome();
-            window.DataContext = new EditPlanIncomeViewModel(db, null);
+            window.DataContext = new EditPlanIncomeViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
         }
@@ -129,7 +130,7 @@ namespace Finance.ViewModel
         public void AddPlanExpenses(object parameter)
         {
             Window window = new View.EditPlanExpenses();
-            window.DataContext = new EditPlanExpensesViewModel(db, null);
+            window.DataContext = new EditPlanExpensesViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
         }
@@ -138,7 +139,7 @@ namespace Finance.ViewModel
         public void AddPurchase(object parameter)
         {
             Window window = new View.EditPurchase();
-            window.DataContext = new EditPurchaseViewModel(db, null);
+            window.DataContext = new EditPurchaseViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
         }
@@ -146,7 +147,7 @@ namespace Finance.ViewModel
         public void UpdatePlanIncome(object parameter)
         {
             Window window = new View.EditPlanIncome();
-            window.DataContext = new EditPlanIncomeViewModel(db, SelectedPlanIncome);
+            window.DataContext = new EditPlanIncomeViewModel(db, SelectedPlanIncome, Id);
             window.Title = "Изменить";
             window.ShowDialog();
         }
@@ -154,7 +155,7 @@ namespace Finance.ViewModel
         public void UpdatePlanExpenses(object parameter)
         {
             Window window = new View.EditPlanExpenses();
-            window.DataContext = new EditPlanExpensesViewModel(db, SelectedPlanExpenses);
+            window.DataContext = new EditPlanExpensesViewModel(db, SelectedPlanExpenses, Id);
             window.Title = "Изменить";
             window.ShowDialog();
         }
@@ -165,6 +166,7 @@ namespace Finance.ViewModel
             if (ConfirmDialog.Confirm($"Удалить план {SelectedPlanIncome.Income} {SelectedPlanIncome.Source_of_income.Name} ?"))
             {
                 PlanIncomeSource.Remove(SelectedPlanIncome);
+                db.PlanIncome.Local.Remove(SelectedPlanIncome);
                 db.SaveChanges();
             }
         }
@@ -175,6 +177,7 @@ namespace Finance.ViewModel
             if (ConfirmDialog.Confirm($"Удалить план {SelectedPlanExpenses.Expenses} {SelectedPlanExpenses.Category.Name} ?"))
             {
                 PlanExpensesSource.Remove(SelectedPlanExpenses);
+                db.PlanExpenses.Local.Remove(SelectedPlanExpenses);
                 db.SaveChanges();
             }
         }
@@ -185,6 +188,7 @@ namespace Finance.ViewModel
             if (ConfirmDialog.Confirm($"Удалить покупку {SelectedPurchase.Name}?"))
             {
                 PurchaseSource.Remove(SelectedPurchase);
+                db.Purchase.Local.Remove(SelectedPurchase);
                 db.SaveChanges();
             }
         }

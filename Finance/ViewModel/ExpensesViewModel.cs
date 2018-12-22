@@ -42,11 +42,12 @@ namespace Finance.ViewModel
         public ExpensesViewModel expensesContext;
         private FinancesDBContext db;
         //DBReposSQL db2 = new DBReposSQL();
-
+        int Id;
         //in repository
         public ExpensesViewModel(FinancesDBContext dbcontext, int Id)
         {
             db = dbcontext;
+            this.Id = Id;
             LoadExpenses();
             AddExpensesCommand = new RelayCommand(AddExpenses);
             UpdateExpensesCommand = new RelayCommand(UpdateExpenses, CanExecute);
@@ -56,20 +57,21 @@ namespace Finance.ViewModel
         private void LoadExpenses()
         {
             db.Expenses.Include(i => i.Category).Include(i => i.User).Load();
-            ExpensesSource = db.Expenses.Local;
+            //ExpensesSource = db.Expenses.Local;
+            ExpensesSource = new ObservableCollection<Expenses>(db.Expenses.Where(i => i.User.Id == Id).ToList());
         }
 
         public void AddExpenses(object parameter)
         {
             Window window = new View.EditExpenses();
-            window.DataContext = new EditExpensesViewModel(db, null);
+            window.DataContext = new EditExpensesViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
         }
         public void UpdateExpenses(object parameter)
         {
             Window window = new View.EditExpenses();
-            window.DataContext = new EditExpensesViewModel(db, SelectedExpenses);
+            window.DataContext = new EditExpensesViewModel(db, SelectedExpenses, Id);
             window.Title = "Изменить";
             window.ShowDialog();
         }

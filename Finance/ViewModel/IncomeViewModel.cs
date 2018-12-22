@@ -12,7 +12,18 @@ namespace Finance.ViewModel
 {
     public class IncomeViewModel : BaseViewModel
     {
-        public ObservableCollection<Income> IncomeSource { get; set; }
+        //public ObservableCollection<Income> IncomeSource { get; set; }
+        private ObservableCollection<Income> incomeSource;
+        public ObservableCollection<Income> IncomeSource
+        {
+            get { return incomeSource; }
+            set
+            {
+                incomeSource = value;
+                OnPropertyChanged("IncomeSource");
+            }
+        }
+
         //public List<Income> IncomeSource { get; set; }
         public Income SelectedIncome { get; set; }
 
@@ -53,10 +64,9 @@ namespace Finance.ViewModel
         }
 
         private void LoadIncomes()
-        { 
+        {
             db.Income.Include(i => i.Source_of_income).Include(i => i.User).Load();
             IncomeSource = new ObservableCollection<Income>(db.Income.Where(i => i.User.Id == Id).ToList());
-
         }
 
         public void AddIncome(object parameter)
@@ -80,6 +90,7 @@ namespace Finance.ViewModel
 
             if (ConfirmDialog.Confirm($"Удалить доход {SelectedIncome.Sum} ({SelectedIncome.Source_of_income.Name}) от {SelectedIncome.Date}?"))
             {
+                db.Income.Local.Remove(SelectedIncome);
                 IncomeSource.Remove(SelectedIncome);
                 db.SaveChanges();
             }

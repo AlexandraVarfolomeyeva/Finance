@@ -19,7 +19,7 @@ namespace Finance.ViewModel
         public ObservableCollection<Necessity> ExpensesNecessityList { get; set; }
         public RelayCommand ApplyChangesCommand { get; set; }
 
-        public EditExpensesViewModel(FinancesDBContext dbContext, Expenses expenses)
+        public EditExpensesViewModel(FinancesDBContext dbContext, Expenses expenses, int Id)
         {
             this.dbContext = dbContext;
             ExpensesCategoryList = dbContext.Category.Local;
@@ -35,7 +35,8 @@ namespace Finance.ViewModel
                 CurrentExpenses.Date = DateTime.Now;
                 ApplyChangesCommand = new RelayCommand(AddExpenses, CanExe);
             }
-            CurrentExpenses.User = dbContext.User.FirstOrDefault();
+            //CurrentExpenses.User = dbContext.User.FirstOrDefault();
+            CurrentExpenses.LoginId = Id;
         }
 
         private void AddExpenses(object parameter)
