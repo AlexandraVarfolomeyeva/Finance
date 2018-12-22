@@ -34,6 +34,13 @@ namespace Finance.ViewModel
             set { addIncomeCommand = value; }
         }
 
+        RelayCommand addSourceCommand;
+        public RelayCommand AddSourceCommand
+        {
+            get { return addSourceCommand; }
+            set { addSourceCommand = value; }
+        }
+
         RelayCommand updateIncomeCommand;
         public RelayCommand UpdateIncomeCommand
         {
@@ -61,6 +68,7 @@ namespace Finance.ViewModel
             AddIncomeCommand = new RelayCommand(AddIncome);
             UpdateIncomeCommand = new RelayCommand(UpdateIncome, CanExecute);
             DeleteIncomeCommand = new RelayCommand(DeleteIncome, CanExecute);
+            addSourceCommand = new RelayCommand(AddSource);
         }
 
         private void LoadIncomes()
@@ -77,6 +85,15 @@ namespace Finance.ViewModel
             window.ShowDialog();
             IncomeSource = new ObservableCollection<Income>(db.Income.Where(i => i.User.Id == Id).ToList());
         }
+
+        public void AddSource(object parameter)
+        {
+            Window window = new View.AddSource();
+            window.DataContext = new AddSourceViewModel(db);
+            //window.Title = "Добавление";
+            window.ShowDialog();
+        }
+
 
         public void UpdateIncome(object parameter)
         {

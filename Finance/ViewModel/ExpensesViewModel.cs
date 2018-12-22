@@ -38,6 +38,13 @@ namespace Finance.ViewModel
             set { addExpensesCommand = value; }
         }
 
+        RelayCommand addCategoryCommand;
+        public RelayCommand AddCategoryCommand
+        {
+            get { return addCategoryCommand; }
+            set { addCategoryCommand = value; }
+        }
+
         RelayCommand updateExpensesCommand;
         public RelayCommand UpdateExpensesCommand
         {
@@ -62,6 +69,7 @@ namespace Finance.ViewModel
             this.Id = Id;
             LoadExpenses();
             AddExpensesCommand = new RelayCommand(AddExpenses);
+            AddCategoryCommand = new RelayCommand(AddCategory);
             UpdateExpensesCommand = new RelayCommand(UpdateExpenses, CanExecute);
             DeleteExpensesCommand = new RelayCommand(DeleteExpenses, CanExecute);
         }
@@ -71,6 +79,15 @@ namespace Finance.ViewModel
             db.Expenses.Include(i => i.Category).Include(i => i.User).Load();
             //ExpensesSource = db.Expenses.Local;
             ExpensesSource = new ObservableCollection<Expenses>(db.Expenses.Where(i => i.User.Id == Id).ToList());
+        }
+
+        public void AddCategory(object parameter)
+        {
+            Window window = new View.AddCategory();
+            window.DataContext = new AddCategoryViewModel(db);
+      
+            window.ShowDialog();
+          
         }
 
         public void AddExpenses(object parameter)

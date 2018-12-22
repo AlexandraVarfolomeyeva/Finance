@@ -91,6 +91,8 @@
     <Compile Include="Model\Entities\sysdiagrams.cs" />
     <Compile Include="Model\Entities\User.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\AddCategoryViewModel.cs" />
+    <Compile Include="ViewModel\AddSourceViewModel.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
     <Compile Include="ViewModel\BugetViewModel.cs" />
     <Compile Include="ViewModel\Edit\EditExpensesViewModel.cs" />
@@ -100,6 +102,12 @@
     <Compile Include="ViewModel\Edit\EditPurchaseViewModel.cs" />
     <Compile Include="ViewModel\ExpensesViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
+    <Compile Include="View\AddCategory.xaml.cs">
+      <DependentUpon>AddCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSource.xaml.cs">
+      <DependentUpon>AddSource.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditExpenses.xaml.cs">
       <DependentUpon>EditExpenses.xaml</DependentUpon>
     </Compile>
@@ -124,6 +132,14 @@
     <Compile Include="View\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EditExpenses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
