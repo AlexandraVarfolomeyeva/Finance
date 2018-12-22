@@ -75,7 +75,7 @@ namespace Finance.ViewModel
             window.DataContext = new EditIncomesViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
-            OnPropertyChanged("IncomeSource");
+            IncomeSource = new ObservableCollection<Income>(db.Income.Where(i => i.User.Id == Id).ToList());
         }
 
         public void UpdateIncome(object parameter)

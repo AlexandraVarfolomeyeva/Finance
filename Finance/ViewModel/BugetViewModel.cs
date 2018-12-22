@@ -13,7 +13,7 @@ namespace Finance.ViewModel
   public  class BudgetViewModel : BaseViewModel
     {
         public ObservableCollection<ExpensesPeriod> ExpensesPeriodSource { get; set; }
-        
+        public string total;
         public ObservableCollection<IncomePeriod> IncomePeriodSource { get; set; }
         public ObservableCollection<ExpensesSum> ExpensesSumSource { get; set; }
         public double TotalIncome, TotalExpenses, Profit;
@@ -100,7 +100,7 @@ namespace Finance.ViewModel
                     ExpensesSumSource.Add(p);
                 }
                 Profit = TotalIncome - TotalExpenses;
-            
+                total = "Расходы составили: "+ TotalExpenses + ". Доходы составили: " + TotalIncome + ". Прибыль: " + Profit + ".";
             }
             catch (Exception ex)
             {

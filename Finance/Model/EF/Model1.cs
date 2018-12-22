@@ -13,6 +13,11 @@ namespace Finance
             Source_of_income.Load();
             Category.Load();
             Necessity.Load();
+            Income.Load();
+            Expenses.Load();
+            PlanExpenses.Load();
+            PlanIncome.Load();
+            Purchase.Load();
         }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Expenses> Expenses { get; set; }

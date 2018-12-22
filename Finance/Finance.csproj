@@ -93,11 +93,11 @@
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
     <Compile Include="ViewModel\BugetViewModel.cs" />
-    <Compile Include="ViewModel\EditExpensesViewModel.cs" />
-    <Compile Include="ViewModel\EditIncomesViewModel.cs" />
-    <Compile Include="ViewModel\EditPlanExpensesViewModel.cs" />
-    <Compile Include="ViewModel\EditPlanIncomeViewModel.cs" />
-    <Compile Include="ViewModel\EditPurchaseViewModel.cs" />
+    <Compile Include="ViewModel\Edit\EditExpensesViewModel.cs" />
+    <Compile Include="ViewModel\Edit\EditIncomesViewModel.cs" />
+    <Compile Include="ViewModel\Edit\EditPlanExpensesViewModel.cs" />
+    <Compile Include="ViewModel\Edit\EditPlanIncomeViewModel.cs" />
+    <Compile Include="ViewModel\Edit\EditPurchaseViewModel.cs" />
     <Compile Include="ViewModel\ExpensesViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="View\EditExpenses.xaml.cs">
@@ -174,16 +174,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <Resource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -200,6 +201,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\money.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="money.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="money2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

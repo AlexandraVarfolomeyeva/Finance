@@ -14,9 +14,42 @@ namespace Finance.ViewModel
 {
     public class PlanViewModel : BaseViewModel
     {
-        public ObservableCollection<PlanExpenses> PlanExpensesSource { get; set; }
-        public ObservableCollection<PlanIncome> PlanIncomeSource { get; set; }
-        public ObservableCollection<Purchase> PurchaseSource { get; set; }
+        //public ObservableCollection<PlanExpenses> PlanExpensesSource { get; set; }
+        //public ObservableCollection<PlanIncome> PlanIncomeSource { get; set; }
+        //public ObservableCollection<Purchase> PurchaseSource { get; set; }
+
+        private ObservableCollection<PlanExpenses> planExpensesSource;
+        public ObservableCollection<PlanExpenses> PlanExpensesSource
+        {
+            get { return planExpensesSource; }
+            set
+            {
+                planExpensesSource = value;
+                OnPropertyChanged("PlanExpensesSource");
+            }
+        }
+        private ObservableCollection<PlanIncome> planIncomeSource;
+        public ObservableCollection<PlanIncome> PlanIncomeSource
+        {
+            get { return planIncomeSource; }
+            set
+            {
+                planIncomeSource = value;
+                OnPropertyChanged("PlanIncomeSource");
+            }
+        }
+        private ObservableCollection<Purchase> purchaseSource;
+        public ObservableCollection<Purchase> PurchaseSource
+        {
+            get { return purchaseSource; }
+            set
+            {
+                purchaseSource = value;
+                OnPropertyChanged("PurchaseSource");
+            }
+        }
+
+
         public PlanExpenses SelectedPlanExpenses { get; set; }
         public PlanIncome SelectedPlanIncome { get; set; }
         public Purchase SelectedPurchase { get; set; }
@@ -125,6 +158,8 @@ namespace Finance.ViewModel
             window.DataContext = new EditPlanIncomeViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
+            PlanIncomeSource = new ObservableCollection<PlanIncome>(db.PlanIncome.Where(i => i.User.Id == Id).ToList());
+
         }
 
         public void AddPlanExpenses(object parameter)
@@ -133,6 +168,8 @@ namespace Finance.ViewModel
             window.DataContext = new EditPlanExpensesViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
+            PlanExpensesSource = new ObservableCollection<PlanExpenses>(db.PlanExpenses.Where(i => i.User.Id == Id).ToList());
+
         }
 
 
@@ -142,6 +179,7 @@ namespace Finance.ViewModel
             window.DataContext = new EditPurchaseViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
+            PurchaseSource = new ObservableCollection<Purchase>(db.Purchase.Where(i => i.User.Id == Id).ToList());
         }
 
         public void UpdatePlanIncome(object parameter)

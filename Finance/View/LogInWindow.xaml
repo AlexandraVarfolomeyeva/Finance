@@ -8,8 +8,8 @@
         mc:Ignorable="d" FontSize="14" FontFamily="Georgia" Foreground="#191970"
         Title="Вход в систему" Height="140" Width="420">
     <Window.Resources>
-        
-        
+
+
         <Style x:Key="StyleForButton" TargetType="Button">
             <Setter Property="Background" Value="#F8F8FF"/>
         </Style>
@@ -23,7 +23,10 @@
             <Setter Property="Background" Value="#F8F8FF"/>
         </Style>
     </Window.Resources>
-    <Grid Background="#FFFAFA">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -38,13 +41,14 @@
         <TextBlock Grid.Column="0" Grid.Row=" 1" Margin="5,5,5,5" HorizontalAlignment="Center">Пароль:</TextBlock>
         <PasswordBox x:Name="passwordBox" Style="{StaticResource StyleForPasswordBox}" Grid.Column="1" Grid.Row=" 1" Margin="5,5,5,5"></PasswordBox>
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Height="auto" HorizontalAlignment="Center">
-            <Button Content="Регистрация" Command="{Binding RegistrationCommand, Mode=OneTime}"
+
+            <Button Content="Регистрация" Command="{Binding RegistrationCommand, Mode=OneTime}" Width="110"
             CommandParameter="{Binding ElementName=passwordBox}" HorizontalAlignment="Center" Style="{StaticResource StyleForButton}" Margin="5,5,5,5"/>
 
-            <Button Style="{StaticResource StyleForButton}" Content="Войти" Command="{Binding LoginCommand, Mode=OneTime}"
-            HorizontalAlignment="Center" Margin="5"  CommandParameter="{Binding ElementName=passwordBox}">
+            <Button Style="{StaticResource StyleForButton}" Content="Войти" Width="110"  Command="{Binding LoginCommand, Mode=OneTime}"
+            HorizontalAlignment="Center" Margin="5"  CommandParameter="{Binding ElementName=passwordBox}" IsDefault="True">
             </Button>
 
         </StackPanel>
-        </Grid>
+    </Grid>
 </Window>

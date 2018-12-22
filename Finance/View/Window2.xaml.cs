@@ -28,5 +28,10 @@ namespace Finance
             DataContext = MainVM;
             InitializeComponent();
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

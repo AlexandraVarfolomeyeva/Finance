@@ -16,7 +16,19 @@ namespace Finance.ViewModel
 {
   public  class ExpensesViewModel : BaseViewModel 
     {
-        public ObservableCollection<Expenses> ExpensesSource { get; set; }
+        //public ObservableCollection<Expenses> ExpensesSource { get; set; }
+
+        private ObservableCollection<Expenses> expensesSource;
+        public ObservableCollection<Expenses> ExpensesSource
+        {
+            get { return expensesSource; }
+            set
+            {
+                expensesSource = value;
+                OnPropertyChanged("ExpensesSource");
+            }
+        }
+
         public Expenses SelectedExpenses { get; set; }
 
         RelayCommand addExpensesCommand;
@@ -67,6 +79,8 @@ namespace Finance.ViewModel
             window.DataContext = new EditExpensesViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
+            ExpensesSource = new ObservableCollection<Expenses>(db.Expenses.Where(i => i.User.Id == Id).ToList());
+
         }
         public void UpdateExpenses(object parameter)
         {
