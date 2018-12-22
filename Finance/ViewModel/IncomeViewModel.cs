@@ -75,6 +75,7 @@ namespace Finance.ViewModel
             window.DataContext = new EditIncomesViewModel(db, null, Id);
             window.Title = "Добавление";
             window.ShowDialog();
+            OnPropertyChanged("IncomeSource");
         }
 
         public void UpdateIncome(object parameter)

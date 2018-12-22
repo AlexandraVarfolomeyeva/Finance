@@ -42,7 +42,7 @@
         <TextBlock Text="Дата" Grid.Column="0" Grid.Row="0" Margin="5,5,2,5" Grid.ColumnSpan="2"/>
         <DatePicker Grid.Column="1" Grid.Row="0" Margin="2,5,5,5" DisplayDateStart="1/1/2016"  SelectedDate="{Binding Path=CurrentPlanIncome.Date, Mode=TwoWay}"/>
 
-        <TextBlock Text="Сумма" Grid.Column="0" Grid.Row="1" Margin="5,5,2,5" Grid.ColumnSpan="2"/>
+        <TextBlock Text="Доход" Grid.Column="0" Grid.Row="1" Margin="5,5,2,5" Grid.ColumnSpan="2"/>
         <TextBox Grid.Column="2" Grid.Row="1" Style="{StaticResource StyleForTextBoxes}" Margin="1.8,4.6,4.6,5.2" Text="{Binding Path=CurrentPlanIncome.Income, Mode=TwoWay}"/>
 
 
@@ -62,7 +62,7 @@
 
 
 
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Height="auto" HorizontalAlignment="Center" Margin="82,0,81.6,-0.4">
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Height="auto" HorizontalAlignment="Center" >
             <Button Content="Применить" Background="White" Height="auto" Margin="5" HorizontalAlignment="Center" Style="{StaticResource StyleForButton}" Command="{Binding Path=ApplyChangesCommand}" IsCancel="True" Click="Button_Click"/>
             <Button Content="Отмена" Background="White" Height="auto" Margin="5" HorizontalAlignment="Center" Style="{StaticResource StyleForButton}" IsCancel="True"/>
         </StackPanel>

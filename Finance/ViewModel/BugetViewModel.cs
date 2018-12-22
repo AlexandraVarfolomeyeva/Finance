@@ -72,24 +72,28 @@ namespace Finance.ViewModel
                 System.Data.SqlClient.SqlParameter param6 = new System.Data.SqlClient.SqlParameter("@ending", DateTo);
                 System.Data.SqlClient.SqlParameter param7 = new System.Data.SqlClient.SqlParameter("@beginning", DateFrom);
                 System.Data.SqlClient.SqlParameter param8 = new System.Data.SqlClient.SqlParameter("@ending", DateTo);
+                System.Data.SqlClient.SqlParameter param9 = new System.Data.SqlClient.SqlParameter("@id", Id);
+                System.Data.SqlClient.SqlParameter param10 = new System.Data.SqlClient.SqlParameter("@id", Id);
 
                 var result = db.Database.SqlQuery<ExpensesPeriod>("ExpensesPeriod @beginning, @ending", new object[] { param1, param2 }).ToList();
                 foreach (ExpensesPeriod p in result)
                 {
+                    if (p.User == Id)
                     ExpensesPeriodSource.Add(p);
                 }
                 var result1 = db.Database.SqlQuery<IncomePeriod>("IncomePeriod @beginning, @ending", new object[] { param3, param4 }).ToList();
                 foreach (IncomePeriod p in result1)
                 {
-                    IncomePeriodSource.Add(p);
+                    if (p.User == Id)
+                        IncomePeriodSource.Add(p);
                 }
-                var result2 = db.Database.SqlQuery<IncomeSum>("IncomeSum @beginning, @ending", new object[] { param5, param6 }).ToList();
+                var result2 = db.Database.SqlQuery<IncomeSum>("IncomeSum @beginning, @ending, @id", new object[] { param5, param6, param10}).ToList();
                 foreach (IncomeSum p in result2)
                 {
                     TotalIncome += p.Sum;
                     IncomeSumSource.Add(p);
                 }
-                var result3 = db.Database.SqlQuery<ExpensesSum>("ExpensesSum @beginning, @ending", new object[] { param7, param8 }).ToList();
+                var result3 = db.Database.SqlQuery<ExpensesSum>("ExpensesSum @beginning, @ending, @id", new object[] { param7, param8, param9 }).ToList();
                 foreach (ExpensesSum p in result3)
                 {
                     TotalExpenses += p.Sum;

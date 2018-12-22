@@ -13,5 +13,6 @@ namespace Finance.Model.Entities
         public double Sum { get; set; }
         public string Category { get; set; }
         public string Necessity { get; set; }
+        public int User { get; set; }
     }
 }

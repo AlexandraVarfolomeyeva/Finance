@@ -11,5 +11,6 @@ namespace Finance.Model.Entities
         public  DateTime Date { get; set; }
         public double Sum { get; set; }
         public string  Source { get; set; }
+        public int User { get; set; }
     }
 }
