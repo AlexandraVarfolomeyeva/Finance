@@ -118,7 +118,7 @@
                             </Label.Effect>
                         </Label>
 
-                        <ListView Grid.Row="2" ItemsSource="{Binding Path = IncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedIncome, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleForListView}" SelectionChanged="ListView_SelectionChanged_2">
+                        <ListView Grid.Row="2" ItemsSource="{Binding Path = IncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedIncome, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleForListView}" Width="auto">
        
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
@@ -135,9 +135,9 @@
                            
                             <ListView.View >
                                 <GridView x:Name="IncomeGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source_of_income.Name}"/>
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Header="Дата" Width="auto" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
+                                    <GridViewColumn Header="Источник" Width="auto" DisplayMemberBinding="{Binding Path = Source_of_income.Name}"/>
+                                    <GridViewColumn Header="Сумма" Width="auto" DisplayMemberBinding="{Binding Path=Sum}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -187,11 +187,11 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="ExpensesGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
-                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Name}"/>
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Важность" DisplayMemberBinding="{Binding Path=Necessity1.Necessity1}"/>
+                                    <GridViewColumn Width="auto" Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
+                                    <GridViewColumn Width="auto" Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
+                                    <GridViewColumn Width="auto" Header="Категория" DisplayMemberBinding="{Binding Path = Category.Name}"/>
+                                    <GridViewColumn Width="auto" Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Width="auto" Header="Важность" DisplayMemberBinding="{Binding Path=Necessity1.Necessity1}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -256,10 +256,10 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="PlanExpensesGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                                    <GridViewColumn Header="Расходы" DisplayMemberBinding="{Binding Path = Expenses}"/>
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path = Sum}"/>
-                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path=Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Категория расходов" DisplayMemberBinding="{Binding Path=Category.Name}"/>
+                                    <GridViewColumn Width="auto" Header="Расходы" DisplayMemberBinding="{Binding Path = Expenses}"/>
+                                    <GridViewColumn Width="auto" Header="Сумма" DisplayMemberBinding="{Binding Path = Sum}"/>
+                                    <GridViewColumn Width="auto" Header="Дата" DisplayMemberBinding="{Binding Path=Date, StringFormat=d}"/>
+                                    <GridViewColumn Width="auto" Header="Категория расходов" DisplayMemberBinding="{Binding Path=Category.Name}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -274,10 +274,10 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="PlanIncomeGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                                    <GridViewColumn Header="Доходы" DisplayMemberBinding="{Binding Path=Income}"/>
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Статья доходов" DisplayMemberBinding="{Binding Path=Source_of_income.Name}"/>
+                                    <GridViewColumn Width="auto" Header="Доходы" DisplayMemberBinding="{Binding Path=Income}"/>
+                                    <GridViewColumn Width="auto" Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Width="auto" Header="Дата начала" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
+                                    <GridViewColumn Width="auto" Header="Статья доходов" DisplayMemberBinding="{Binding Path=Source_of_income.Name}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -358,11 +358,11 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="ExpensesPeriodGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
-                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path = Sum}"/>
-                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path=Category}"/>
-                                    <GridViewColumn Header="Важность" DisplayMemberBinding="{Binding Path=Necessity}"/>
+                                    <GridViewColumn Width="auto" Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
+                                    <GridViewColumn Width="auto" Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
+                                    <GridViewColumn Width="auto" Header="Сумма" DisplayMemberBinding="{Binding Path = Sum}"/>
+                                    <GridViewColumn Width="auto" Header="Категория" DisplayMemberBinding="{Binding Path=Category}"/>
+                                    <GridViewColumn Width="auto" Header="Важность" DisplayMemberBinding="{Binding Path=Necessity}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -377,8 +377,8 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="ExpensesSumGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category}"/>
+                                    <GridViewColumn Width="auto" Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Width="auto" Header="Категория" DisplayMemberBinding="{Binding Path = Category}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -395,9 +395,9 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="IncomePeriodGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source}"/>
+                                    <GridViewColumn Width="auto" Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
+                                    <GridViewColumn Width="auto" Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Width="auto" Header="Источник" DisplayMemberBinding="{Binding Path = Source}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -414,8 +414,8 @@
                             </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView x:Name="IncomeSumGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                                    <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
-                                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source}"/>
+                                    <GridViewColumn Width="auto" Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
+                                    <GridViewColumn Width="auto" Header="Источник" DisplayMemberBinding="{Binding Path = Source}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
