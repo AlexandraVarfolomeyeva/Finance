@@ -114,7 +114,8 @@ namespace Finance.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Обнаружена ошибка: " + ex);
+                Console.Write("Обнаружена ошибка: " + ex);
+                MessageBox.Show("Пожалуйста, выберете обе даты!");
             }
          }
 

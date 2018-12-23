@@ -36,7 +36,8 @@ namespace Finance.ViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Введите название!");
+                Console.Write("Обнаружена ошибка: " + ex.ToString());
             }
         }
 
