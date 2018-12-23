@@ -90,7 +90,6 @@
     <Compile Include="Model\Entities\Source_of_income.cs" />
     <Compile Include="Model\Entities\sysdiagrams.cs" />
     <Compile Include="Model\Entities\User.cs" />
-    <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\Edit\AddCategoryViewModel.cs" />
     <Compile Include="ViewModel\Edit\AddSourceViewModel.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
@@ -101,7 +100,6 @@
     <Compile Include="ViewModel\Edit\EditPlanIncomeViewModel.cs" />
     <Compile Include="ViewModel\Edit\EditPurchaseViewModel.cs" />
     <Compile Include="ViewModel\ExpensesViewModel.cs" />
-    <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="View\AddCategory.xaml.cs">
       <DependentUpon>AddCategory.xaml</DependentUpon>
     </Compile>
@@ -211,7 +209,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="f.jpg">
+    <Resource Include="View\pic\f.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -219,12 +217,12 @@
     <None Include="Resources\money.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="money.jpg">
+    <Resource Include="View\pic\money.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="money2.jpg">
+    <Resource Include="View\pic\money2.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

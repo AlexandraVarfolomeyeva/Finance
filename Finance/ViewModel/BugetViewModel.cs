@@ -19,7 +19,7 @@ namespace Finance.ViewModel
         public double TotalIncome, TotalExpenses, Profit;
         public ObservableCollection<IncomeSum> IncomeSumSource { get; set; }
         //public DateTime DateFrom, DateTo;
-        public ExpensesViewModel expensesContext;
+        //public ExpensesViewModel expensesContext;
         private FinancesDBContext db;
 
         private string total;

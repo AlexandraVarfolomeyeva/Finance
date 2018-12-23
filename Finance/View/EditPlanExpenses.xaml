@@ -28,7 +28,7 @@
     </Window.Background>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
+            <ImageBrush ImageSource="pic/money2.jpg" Stretch="None" Opacity="0.6"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

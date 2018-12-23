@@ -7,19 +7,20 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Finance.ViewModel
 {
-    public class EditIncomesViewModel: BaseViewModel
+    public class EditIncomesViewModel : BaseViewModel
     {
-        bool? dr ;
-        public bool? DialogResult { get { return dr; } set {dr=value; } }
+        bool? dr;
+        public bool? DialogResult { get { return dr; } set { dr = value; } }
 
         FinancesDBContext dbContext;
         public Income CurrentIncome { get; set; }
         public ObservableCollection<Source_of_income> IncomeSourceList { get; set; }
         public RelayCommand ApplyChangesCommand { get; set; }
-         
+
         public EditIncomesViewModel(FinancesDBContext dbContext, Income income, int Id)
         {
             this.dbContext = dbContext;
@@ -49,19 +50,33 @@ namespace Finance.ViewModel
 
         private void AddIncome(object parameter)
         {
-            DialogResult = true;
-            dbContext.Income.Add(CurrentIncome);
-            dbContext.SaveChanges();
+            try
+            {
+                DialogResult = true;
+                dbContext.Income.Add(CurrentIncome);
+                dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void UpdateIncome(object parameter)
         {
-           dbContext.SaveChanges();
+            try
+            {
+                dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         public bool CanExe(object parameter)
         {
-            return !(CurrentIncome == null) && CurrentIncome.Sum>0 && CurrentIncome.Source_of_income != null;
+            return !(CurrentIncome == null) && CurrentIncome.Sum > 0 && CurrentIncome.Source_of_income != null;
         }
     }
 }

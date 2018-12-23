@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Finance.ViewModel
 {
@@ -27,9 +28,16 @@ namespace Finance.ViewModel
 
         private void AddSource(object parameter)
         {
-            DialogResult = true;
-            dbContext.Source_of_income.Add(CurrentSource);
-            dbContext.SaveChanges();
+            try
+            {
+                DialogResult = true;
+                dbContext.Source_of_income.Add(CurrentSource);
+                dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         public bool CanExe(object parameter)
