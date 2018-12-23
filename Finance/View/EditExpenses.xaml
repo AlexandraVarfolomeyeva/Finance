@@ -6,21 +6,27 @@
         xmlns:local="clr-namespace:Finance.View"
         mc:Ignorable="d"
         Title="Редактировать расходы" Height="230" Width="300"  FontSize="14" FontFamily="Georgia" 
-        Foreground="#191970" WindowStartupLocation="CenterScreen"
+        Foreground="#661400" WindowStartupLocation="CenterScreen"
         xmlns:xc="clr-namespace:Finance.Helpers"
         xc:DialogCloser.DialogResult="{Binding DialogResult, UpdateSourceTrigger=Explicit}" x:Name="ddd">
     <Window.Resources>
         <Style x:Key="StyleForButton" TargetType="Button">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForTextBoxes" TargetType="TextBox">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForComboBoxes" TargetType="ComboBox">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
     </Window.Resources>
-    <Grid Background="#FFFAFA">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

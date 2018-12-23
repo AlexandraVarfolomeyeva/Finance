@@ -7,25 +7,28 @@
         mc:Ignorable="d"
          xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Редактировать планы по доходам" Height="190" Width="300"  FontSize="14" FontFamily="Georgia" 
-        Foreground="#191970" WindowStartupLocation="CenterScreen"
+        Foreground="#661400" WindowStartupLocation="CenterScreen"
         xmlns:xc="clr-namespace:Finance.Helpers"
         xc:DialogCloser.DialogResult="{Binding DialogResult, UpdateSourceTrigger=Explicit}" x:Name="ddd">
     
     <Window.Resources>
         <Style x:Key="StyleForButton" TargetType="Button">
-            <Setter Property="Background" Value="WhiteSmoke"/>
-            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForTextBoxes" TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForComboBoxes" TargetType="ComboBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
     </Window.Resources>
-    <Grid Background="#FFFAFA">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

@@ -8,21 +8,27 @@
         Title="EditPurchase" Height="130" Width="300"
         WindowStartupLocation="CenterScreen"
         xmlns:xc="clr-namespace:Finance.Helpers"  FontSize="14" FontFamily="Georgia" 
-        Foreground="#191970"
+        Foreground="#661400"
         xc:DialogCloser.DialogResult="{Binding DialogResult, UpdateSourceTrigger=Explicit}" x:Name="ddd">
     <Window.Resources>
         <Style x:Key="StyleForButton" TargetType="Button">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForTextBoxes" TargetType="TextBox">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForComboBoxes" TargetType="ComboBox">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
     </Window.Resources>
 
-    <Grid Background="#FFFAFA">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -34,7 +40,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="Название покупки" Grid.Column="0" Grid.Row="0" Margin="5,6,2,6" />
         <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource StyleForTextBoxes}" Margin="5,5,5,5" Text="{Binding Path=CurrentPurchase.Name, Mode=TwoWay}"/>
-        
+
         <TextBlock Text="Стоимость" Grid.Column="0" Grid.Row="1" Margin="5,6,2,6" />
         <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource StyleForTextBoxes}" Margin="5,5,5,5" Text="{Binding Path=CurrentPurchase.Sum, Mode=TwoWay}"/>
 

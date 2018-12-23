@@ -8,13 +8,26 @@
         xmlns:local="clr-namespace:Finance"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
          xmlns:vm2="clr-namespace:Finance.ViewModel" 
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
         x:Class="Finance.Window2" mc:Ignorable="d"  FontSize="14" FontFamily="Georgia" 
-        Foreground="#191970"
+        Foreground="#661400"
         Title="Home Finance" MinHeight="450" MinWidth="800" WindowState="Maximized">
     <Window.Resources>
         <vm1:ICommandMultiDateConverter  x:Key="multiDateConverter"/>
         <Style x:Key="StyleForButton" TargetType="Button">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.0" Color="#3D1701" />
+                            <GradientStop Offset="1.0" Color="#63030C" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontFamily" Value="Georgia" />
+            <Setter Property="FontSize" Value="16" />
         </Style>
         <Style x:Key="StyleForLabel" TargetType="Label">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -33,10 +46,50 @@
             <Setter Property="FontSize" Value="50"/>
             <Setter Property="FontWeight" Value="ExtraBold"/>
             <Setter Property="FontStyle" Value="Normal"/>
-
         </Style>
-        <Style x:Key="StyleForListItemButton" TargetType="ListViewItem">
-
+        <Style x:Key="GridViewColumnHeaderStyle1" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border BorderThickness="0,0,1,1" BorderBrush="Black" Background="#F8F8FF">
+                            <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" TextAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.0" Color="#3D1701" />
+                            <GradientStop Offset="1.0" Color="#63030C" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontFamily" Value="Georgia" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style x:Key="StyleForListView" TargetType="ListView">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.0" Color="#3D1701" />
+                            <GradientStop Offset="1.0" Color="#63030C" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="StyleforTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#661400"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="Background" Value="#FFE7D1"></Setter>
         </Style>
     </Window.Resources>
 
@@ -53,10 +106,10 @@
                 <TabItem Header="Доходы" x:Name="IncomeTab" DataContext="{Binding Path=IncomesTabItemVM}">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
+                            
                             <RowDefinition Height="100"></RowDefinition>
                             <RowDefinition Height="40"></RowDefinition>
                             <RowDefinition Height="2*"></RowDefinition>
-
                         </Grid.RowDefinitions>
 
                         <Label Style="{StaticResource StyleForLabel}" Grid.Row="0">Доходы
@@ -65,24 +118,23 @@
                             </Label.Effect>
                         </Label>
 
-                        <ListView Grid.Row="2" ItemsSource="{Binding Path = IncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedIncome, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                            </ListView.Background>
-                            <ListView.ItemContainerStyle >
+                        <ListView Grid.Row="2" ItemsSource="{Binding Path = IncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedIncome, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleForListView}" SelectionChanged="ListView_SelectionChanged_2">
+       
+                            <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="ToolTipService.ToolTip">
                                         <Setter.Value>
-                                            <ToolTip Background="SkyBlue">
+                                            <ToolTip Background="#FFE7D1" Opacity="0.6">
                                                 <TextBlock Text="{Binding Path=Sum}"/>
                                             </ToolTip>
                                         </Setter.Value>
                                     </Setter>
-                                    <Setter Property="Background" Value="#FAD8D1"/>
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
-                            <ListView.View>
-                                <GridView x:Name="IncomeGridView">
+                           
+                            <ListView.View >
+                                <GridView x:Name="IncomeGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
                                     <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source_of_income.Name}"/>
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
@@ -103,7 +155,7 @@
                                 <Button Style="{StaticResource StyleForButton}" Content="Добавить источник дохода" Command="{Binding Path=AddSourceCommand}"/>
                             </StackPanel>
                         </Grid>
-                      
+                       
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="ExpensesTab" Header="Расходы"  DataContext="{Binding Path=ExpensesTabItemVM}">
@@ -119,24 +171,22 @@
                                 <DropShadowEffect BlurRadius="15" Color="#FFD49595"></DropShadowEffect>
                             </Label.Effect>
                         </Label>
-                        <ListView Grid.Row="2" ItemsSource="{Binding Path = ExpensesSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                            </ListView.Background>
+                        <ListView Style="{StaticResource StyleForListView}" Grid.Row="2" ItemsSource="{Binding Path = ExpensesSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}">
+                           
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="ToolTipService.ToolTip">
                                         <Setter.Value>
-                                            <ToolTip Background="SkyBlue">
+                                            <ToolTip Background="#FFE7D1">
                                                 <TextBlock Text="{Binding Path=Sum}"/>
                                             </ToolTip>
                                         </Setter.Value>
                                     </Setter>
-                                    <Setter Property="Background" Value="LightBlue"/>
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="ExpensesGridView">
+                                <GridView x:Name="ExpensesGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
                                     <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category.Name}"/>
@@ -178,7 +228,7 @@
                         </Grid.RowDefinitions>
 
 
-                        <Label Style="{StaticResource StyleForLabel}" Grid.Row="0" Grid.Column="0" FontSize="20">Планируемые денежные поступления
+                        <Label Style="{StaticResource StyleForLabel}" Grid.Row="0" Grid.Column="0" FontSize="25">Планируемые денежные поступления
                             <Label.Effect>
                                 <DropShadowEffect BlurRadius="15" Color="#FFD49595"></DropShadowEffect>
                             </Label.Effect>
@@ -191,30 +241,21 @@
                             </Label.Effect>
                         </Label>
 
-                        <Label Style="{StaticResource StyleForLabel}" Grid.Row="3" Grid.Column="0" FontSize="20">Планируемые затраты
+                        <Label Style="{StaticResource StyleForLabel}" Grid.Row="3" Grid.Column="0" FontSize="25">Планируемые затраты
                             <Label.Effect>
                                 <DropShadowEffect BlurRadius="15" Color="#FFD49595"></DropShadowEffect>
                             </Label.Effect>
                         </Label>
 
-                        <ListView Grid.Row="5" Grid.Column="0" ItemsSource="{Binding Path=PlanExpensesSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlanExpenses, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="ListView_SelectionChanged">
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                            </ListView.Background>
+                        <ListView Style="{StaticResource StyleForListView}" Grid.Row="5" Grid.Column="0" ItemsSource="{Binding Path=PlanExpensesSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlanExpenses, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="ListView_SelectionChanged">
+
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="ToolTipService.ToolTip">
-                                        <Setter.Value>
-                                            <ToolTip Background="SkyBlue">
-                                                <TextBlock Text="{Binding Path=Sum}"/>
-                                            </ToolTip>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Setter Property="Background" Value="LightBlue"/>
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="PlanExpensesGridView">
+                                <GridView x:Name="PlanExpensesGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Расходы" DisplayMemberBinding="{Binding Path = Expenses}"/>
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path = Sum}"/>
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path=Date, StringFormat=d}"/>
@@ -223,25 +264,16 @@
                             </ListView.View>
                         </ListView>
 
-                        <ListView Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path=PlanIncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlanIncome, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView Style="{StaticResource StyleForListView}" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path=PlanIncomeSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPlanIncome, UpdateSourceTrigger=PropertyChanged}">
 
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                            </ListView.Background>
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="ToolTipService.ToolTip">
-                                        <Setter.Value>
-                                            <ToolTip Background="SkyBlue">
-                                                <TextBlock Text="{Binding Path=Sum}"/>
-                                            </ToolTip>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Setter Property="Background" Value="LightBlue"/>
+
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="PlanIncomeGridView">
+                                <GridView x:Name="PlanIncomeGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Доходы" DisplayMemberBinding="{Binding Path=Income}"/>
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
                                     <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
@@ -250,17 +282,15 @@
                             </ListView.View>
                         </ListView>
 
-                        <ListView Grid.Row="2" Grid.RowSpan="4" Grid.Column="1" ItemsSource="{Binding Path = PurchaseSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPurchase, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                            </ListView.Background>
+                        <ListView Style="{StaticResource StyleForListView}" Grid.Row="2" Grid.RowSpan="4" Grid.Column="1" ItemsSource="{Binding Path = PurchaseSource, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedPurchase, UpdateSourceTrigger=PropertyChanged}">
+                         
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="Background" Value="LightBlue"/>
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="PurchaseGridView">
+                                <GridView x:Name="PurchaseGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}" Width="auto"/>
                                     <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Path=Sum}" Width="auto"/>
                                 </GridView>
@@ -300,12 +330,12 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Label Style="{StaticResource StyleForLabel}" Grid.Row="1" Grid.Column="0" FontSize="20"> Затраты за выбранный период
+                        <Label Style="{StaticResource StyleForLabel}" Grid.Row="1" Grid.Column="0" FontSize="24"> Затраты за выбранный период
                             <Label.Effect>
                                 <DropShadowEffect BlurRadius="15" Color="#FFD49595"></DropShadowEffect>
                             </Label.Effect>
                         </Label>
-                        <Label Style="{StaticResource StyleForLabel}" Grid.Row="3" Grid.Column="0" FontSize="20"> Доходы за выбранный период
+                        <Label Style="{StaticResource StyleForLabel}" Grid.Row="3" Grid.Column="0" FontSize="24"> Доходы за выбранный период
                             <Label.Effect>
                                 <DropShadowEffect BlurRadius="15" Color="#FFD49595"></DropShadowEffect>
                             </Label.Effect>
@@ -320,19 +350,14 @@
                                 <DropShadowEffect BlurRadius="15" Color="#FFD49595"></DropShadowEffect>
                             </Label.Effect>
                         </Label>
-                        <ListView Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path = ExpensesPeriodSource, UpdateSourceTrigger=PropertyChanged}" >
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                                <!--<SolidColorBrush Color="#F8CABE"></SolidColorBrush>-->
-                            </ListView.Background>
-                            <!--SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}"-->
+                        <ListView Style="{StaticResource StyleForListView}" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Path = ExpensesPeriodSource, UpdateSourceTrigger=PropertyChanged}" >
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="Background" Value="#FAD8D1"/>
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="ExpensesPeriodGridView">
+                                <GridView x:Name="ExpensesPeriodGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path=Name}"/>
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path = Sum}"/>
@@ -343,19 +368,15 @@
                         </ListView>
 
 
-                        <ListView Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Path = ExpensesSumSource, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                            </ListView.Background>
-                            <!--SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}"-->
-                            <ListView.ItemContainerStyle>
+                        <ListView Style="{StaticResource StyleForListView}" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Path = ExpensesSumSource, UpdateSourceTrigger=PropertyChanged}">
+                           <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
 
-                                    <Setter Property="Background" Value="LightBlue"/>
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="ExpensesSumGridView">
+                                <GridView x:Name="ExpensesSumGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
                                     <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Path = Category}"/>
                                 </GridView>
@@ -365,25 +386,15 @@
 
 
 
-                        <ListView Grid.Row="4" Grid.Column="0" ItemsSource="{Binding Path = IncomePeriodSource, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                            </ListView.Background>
-                            <!--SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}"-->
+                        <ListView Style="{StaticResource StyleForListView}" Grid.Row="4" Grid.Column="0" ItemsSource="{Binding Path = IncomePeriodSource, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="ToolTipService.ToolTip">
-                                        <Setter.Value>
-                                            <ToolTip Background="SkyBlue">
-                                                <TextBlock Text="{Binding Path=Sum}"/>
-                                            </ToolTip>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Setter Property="Background" Value="LightBlue"/>
+                                 
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="IncomePeriodGridView">
+                                <GridView x:Name="IncomePeriodGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Path = Date, StringFormat=d}"/>
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
                                     <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source}"/>
@@ -393,41 +404,27 @@
 
 
 
-                        <ListView Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Path = IncomeSumSource, UpdateSourceTrigger=PropertyChanged}">
-                            <ListView.Background>
-                                <ImageBrush ImageSource="/Finance;component/money2.jpg" Stretch="None" Opacity="0.6"/>
-                            </ListView.Background>
-                            <!--SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}"-->
+                        <ListView Style="{StaticResource StyleForListView}" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Path = IncomeSumSource, UpdateSourceTrigger=PropertyChanged}">
+                           
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
 
-                                    <Setter Property="Background" Value="LightBlue"/>
+                                    <Setter Property="Background" Value="#FFE7D1"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.View>
-                                <GridView x:Name="IncomeSumGridView">
+                                <GridView x:Name="IncomeSumGridView" ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                                     <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Path=Sum}"/>
                                     <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path = Source}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <TextBlock Text="{Binding Path=total, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
-                        <!--<ListView Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path = TotalSource, UpdateSourceTrigger=PropertyChanged}">-->
-                        <!--SelectedItem="{Binding Path=SelectedExpenses, UpdateSourceTrigger=PropertyChanged}"-->
-                        <!--
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="Background" Value="LightBlue"/>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                            <ListView.View>
-                                <GridView x:Name="TotalGridView">
-                                    <GridViewColumn Header="Доходы" DisplayMemberBinding="{Binding Path=TotalIncome}"/>
-                                    <GridViewColumn Header="Расходы" DisplayMemberBinding="{Binding Path=TotalExpenses}"/>
-                                    <GridViewColumn Header="Прибыль" DisplayMemberBinding="{Binding Path=Profit}"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>-->
+                        <TextBlock Margin="15,0,0,0" Style="{StaticResource StyleforTextBlock}"  Text="{Binding Path=Total, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Center">
+                             <TextBlock.Effect>
+                                <DropShadowEffect BlurRadius="10" Color="#FFD49595"></DropShadowEffect>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                     
                         <Grid Grid.Column="0" Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -448,7 +445,7 @@
                                 </Button.Command>-->
                             </Button>
                             <TextBlock Text="От" Grid.Column="0" Margin="5,30,5,5"/>
-                            <DatePicker Name="fromDatePicker" Grid.Column="1" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010"/>
+                            <DatePicker Name="fromDatePicker" Grid.Column="1" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010" DisplayDateEnd="{x:Static sys:DateTime.Now}"/>
                             <!--SelectedDate="{Binding Path=DateFrom, Mode=TwoWay}"/>-->
                             <TextBlock  Text="До" Grid.Column="2" Margin="5,30,5,5"/>
                             <DatePicker Name="toDatePicker" Grid.Column="3" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010"/>
@@ -459,13 +456,16 @@
                 <TabItem Header="Справка" x:Name="HelpTab">
                     <Grid>
 
-                        <RichTextBox Margin="10" IsReadOnly="True">
+                        <RichTextBox  Foreground="#661400" Margin="10" IsReadOnly="True">
+                            <RichTextBox.Background>
+                                <SolidColorBrush Color="#FFE7D1" Opacity="0.3">
+                                </SolidColorBrush>
+                            </RichTextBox.Background>
                             <FlowDocument>
-                                <Paragraph FontSize="12">Данное приложение предназначено для контроля личного бюджета.</Paragraph>
-                                <Paragraph TextAlignment="Justify" FontSize="12">На вкладке "Доходы" представлена информация о денежных поступлениях.</Paragraph>
-                                <Paragraph TextAlignment="Justify" FontSize="12">На вкладке "Расходы" представлена информация о совершенных покупках или оплаченных услугах.</Paragraph>
-                                <Paragraph TextAlignment="Justify" FontSize="12">На вкладке "План" доходы пользователь может внести информацию о планируемых поступлениях и планируемых приобретениях.</Paragraph>
-                                <Paragraph TextAlignment="Justify" FontSize="12">На вкладке "Бюджет" представлена статистическая информация.</Paragraph>
+                                <Paragraph TextAlignment="Justify" FontSize="20">На вкладке "Доходы" представлена информация о денежных поступлениях.</Paragraph>
+                                <Paragraph TextAlignment="Justify" FontSize="20">На вкладке "Расходы" представлена информация о совершенных покупках или оплаченных услугах.</Paragraph>
+                                <Paragraph TextAlignment="Justify" FontSize="20">На вкладке "План" доходы пользователь может внести информацию о планируемых поступлениях и планируемых приобретениях.</Paragraph>
+                                <Paragraph TextAlignment="Justify" FontSize="20">На вкладке "Бюджет" представлена статистическая информация.</Paragraph>
                             </FlowDocument>
                         </RichTextBox>
 
@@ -475,9 +475,20 @@
                 </TabItem>
                 <TabItem Header="О программе" x:Name="AboutTab">
                     <Grid>
-                        <RichTextBox Margin="10" IsReadOnly="True">
+
+                        <RichTextBox  Foreground="#661400" Margin="10" IsReadOnly="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <RichTextBox.Background>
+                                <SolidColorBrush Color="#FFE7D1" Opacity="0.3">
+                                </SolidColorBrush>
+                            </RichTextBox.Background>
+                            <RichTextBox.BorderBrush>
+                                <SolidColorBrush Color="Transparent">
+                                    
+                                </SolidColorBrush>
+                            </RichTextBox.BorderBrush>
+                            <RichTextBox.BorderThickness> 0 </RichTextBox.BorderThickness>
                             <FlowDocument>
-                                <Paragraph FontSize="12">Программа разработана студенткой 3-41* Варфоломеевой Александрой в качестве курсового проекта по дисциплине "Конструирование программного обеспечения".</Paragraph>
+                                <Paragraph FontSize="30">Программа разработана студенткой 3-41* Варфоломеевой Александрой в качестве курсового проекта по дисциплине "Конструирование программного обеспечения".</Paragraph>
                             </FlowDocument>
                         </RichTextBox>
                     </Grid>

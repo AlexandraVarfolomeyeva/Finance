@@ -5,22 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Finance"
           xmlns:vm1="clr-namespace:Finance.Helpers"
-        mc:Ignorable="d" FontSize="14" FontFamily="Georgia" Foreground="#191970"
+        mc:Ignorable="d" FontSize="14" FontFamily="Georgia" Foreground="#661400"
         Title="Вход в систему" Height="140" Width="420">
     <Window.Resources>
 
 
         <Style x:Key="StyleForButton" TargetType="Button">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForTextBoxes" TargetType="TextBox">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForComboBoxes" TargetType="ComboBox">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
         <Style x:Key="StyleForPasswordBox" TargetType="PasswordBox">
             <Setter Property="Background" Value="#F8F8FF"/>
+            <Setter Property="Foreground" Value="#661400"/>
         </Style>
     </Window.Resources>
     <Grid>

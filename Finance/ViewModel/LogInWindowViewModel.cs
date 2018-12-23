@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Finance
 {
-    public class LogInWindowViewModel : BaseViewModel, INotifyPropertyChanged, IRequireViewIdentification
+    public class LogInWindowViewModel : BaseViewModel, IRequireViewIdentification
     {
         private readonly RelayCommand _loginCommand;
         private readonly RelayCommand _registrationCommand;

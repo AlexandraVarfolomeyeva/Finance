@@ -33,5 +33,19 @@ namespace Finance
         {
 
         }
+       private void Button1_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListView_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -20,5 +20,10 @@ namespace Finance.Helpers
                 }
             }
         }
+
+        internal static void CloseWindow(object viewID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

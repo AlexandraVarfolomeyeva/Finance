@@ -91,8 +91,8 @@
     <Compile Include="Model\Entities\sysdiagrams.cs" />
     <Compile Include="Model\Entities\User.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
-    <Compile Include="ViewModel\AddCategoryViewModel.cs" />
-    <Compile Include="ViewModel\AddSourceViewModel.cs" />
+    <Compile Include="ViewModel\Edit\AddCategoryViewModel.cs" />
+    <Compile Include="ViewModel\Edit\AddSourceViewModel.cs" />
     <Compile Include="ViewModel\BaseModel.cs" />
     <Compile Include="ViewModel\BugetViewModel.cs" />
     <Compile Include="ViewModel\Edit\EditExpensesViewModel.cs" />
