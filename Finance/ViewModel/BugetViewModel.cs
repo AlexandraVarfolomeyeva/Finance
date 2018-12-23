@@ -109,7 +109,8 @@ namespace Finance.ViewModel
                     ExpensesSumSource.Add(p);
                 }
                 Profit = TotalIncome - TotalExpenses;
-                Total = "Расходы составили: "+ TotalExpenses + ". Доходы составили: " + TotalIncome + ". Прибыль: " + Profit + ".";
+               if (Profit>=0) Total = "Расходы составили: "+ TotalExpenses + ". Доходы составили: " + TotalIncome + ". Прибыль: " + Profit + ".";
+               else Total = "Расходы составили: " + TotalExpenses + ". Доходы составили: " + TotalIncome + ". Убыток: " + Math.Abs(Profit) + ".";
             }
             catch (Exception ex)
             {

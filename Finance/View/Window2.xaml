@@ -101,7 +101,7 @@
         <StackPanel Grid.Column="0">
             <TabControl x:Name="TabControl" TabStripPlacement="Left" HorizontalAlignment="Stretch" MinHeight="500" Margin="0,0,0,0">
                 <TabControl.Background>
-                    <ImageBrush ImageSource="/Finance;component/money.jpg" Opacity="0.80" Stretch="None"/>
+                    <ImageBrush ImageSource="/Finance;component/money.jpg" Opacity="0.50" Stretch="None"/>
                 </TabControl.Background>
                 <TabItem Header="Доходы" x:Name="IncomeTab" DataContext="{Binding Path=IncomesTabItemVM}">
                     <Grid Margin="10">
