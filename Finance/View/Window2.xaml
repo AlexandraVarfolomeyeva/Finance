@@ -83,6 +83,7 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
+            <Setter Property="FontSize" Value="16"/>
         </Style>
         <Style x:Key="StyleforTextBlock" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#661400"></Setter>
@@ -99,10 +100,42 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <TabControl x:Name="TabControl" TabStripPlacement="Left" HorizontalAlignment="Stretch" MinHeight="500" Margin="0,0,0,0">
+            <TabControl x:Name="TabControl" TabStripPlacement="Left" HorizontalAlignment="Stretch" MinHeight="600" Margin="0" BorderThickness="0" FontSize="12" Height="auto" Width="auto" Foreground="#661400">
                 <TabControl.Background>
                     <ImageBrush ImageSource="/Finance;component/money.jpg" Opacity="0.50" Stretch="None"/>
                 </TabControl.Background>
+
+
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Foreground" Value="#661400"></Setter>
+                        <Setter Property="FontSize" Value="25"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Grid Name="Panel">
+                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Panel" Property="Background" Value="#FFE7D1" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Panel" Property="Background" Value="White" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+
+
+
                 <TabItem Header="Доходы" x:Name="IncomeTab" DataContext="{Binding Path=IncomesTabItemVM}">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
@@ -315,7 +348,7 @@
                         </StackPanel>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Бюджет" DataContext="{Binding Path=BugetTabItemVM}" Height="24" Margin="0" VerticalAlignment="Top">
+                <TabItem Header="Бюджет" DataContext="{Binding Path=BugetTabItemVM}" Height="auto" Margin="0" VerticalAlignment="Top">
                     <Grid Margin="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"></RowDefinition>
@@ -445,10 +478,10 @@
                                 </Button.Command>-->
                             </Button>
                             <TextBlock Text="От" Grid.Column="0" Margin="5,30,5,5"/>
-                            <DatePicker Name="fromDatePicker" Grid.Column="1" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010" DisplayDateEnd="{x:Static sys:DateTime.Now}"/>
+                            <DatePicker Name="fromDatePicker" Grid.Column="1" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010" DisplayDateEnd="{x:Static sys:DateTime.Now}" FontSize="16"/>
                             <!--SelectedDate="{Binding Path=DateFrom, Mode=TwoWay}"/>-->
                             <TextBlock  Text="До" Grid.Column="2" Margin="5,30,5,5"/>
-                            <DatePicker Name="toDatePicker" Grid.Column="3" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010"/>
+                            <DatePicker FontSize="16" Name="toDatePicker" Grid.Column="3" Grid.Row="0" Margin="2,25,5,5" DisplayDateStart="1/1/2010"/>
                             <!--SelectedDate="{Binding Path=DateTo, Mode=TwoWay}"/>-->
                         </Grid>
                     </Grid>
